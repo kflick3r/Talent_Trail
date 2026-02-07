@@ -3,13 +3,13 @@
 #### Day/Time of Weekly Team Meeting
 ---
 #### Team Members in Meeting:
-- Kassidy Flick (Scrum Master)
+- Sarah Suliman
+- Kassidy Flick
 - Mark Olmscheid
 - Lisa Wilder
-- Sarah Suliman
 
 **Zoom Meeting Recording:**
-<URL>
+
 
 ---
 
@@ -25,9 +25,9 @@
 Level	: <level of effort : dimensionless units>
 
 ##### Acceptance Criteria
-Given	: 	<context of action>
-When 	: 	<some action is completed>
-Then 	: 	<set of observable outcomes>
+Given	: 	<context of action>  
+When 	: 	<some action is completed>  
+Then 	: 	<set of observable outcomes>  
 
 ---
 
@@ -40,9 +40,9 @@ Then 	: 	<set of observable outcomes>
 Level	: <level of effort : dimensionless units>
 
 ##### Acceptance Criteria
-Given	: 	<context of action>
-When 	: 	<some action is completed>
-Then 	: 	<set of observable outcomes>
+Given	: 	<context of action>  
+When 	: 	<some action is completed>  
+Then 	: 	<set of observable outcomes>  
 
 ---
 
@@ -55,9 +55,9 @@ Then 	: 	<set of observable outcomes>
 Level	: <level of effort : dimensionless units>
 
 ##### Acceptance Criteria
-Given	: 	<context of action>
-When 	: 	<some action is completed>
-Then 	: 	<set of observable outcomes>
+Given	: 	<context of action>  
+When 	: 	<some action is completed>  
+Then 	: 	<set of observable outcomes>  
 
 ---
 

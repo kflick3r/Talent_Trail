@@ -8,9 +8,9 @@
 - **Team/Product Name:** 
 
 ### Team Members
-- **Lisa Wilder** (GitHub: `xxxx`, Email: Lisa.Wilder@colorado.edu)
+- **Lisa Wilder** (GitHub: `Wilder407`, Email: Lisa.Wilder@colorado.edu)
 - **Kassidy Flick** (GitHub: `kflick3r`, Email: kassidy.flick@colorado.edu)
-- **Mark Olmscheid** (GitHub: `xxxx`, Email: Mark.Olmscheid@colorado.edu)
+- **Mark Olmscheid** (GitHub: `Olmscheid`, Email: Mark.Olmscheid@colorado.edu)
 - **Sarah Suliman** (GitHub: `xxxx`, Email: Sarah.Suliman@colorado.edu)
 
 ### Scheduled Weekly Team Meeting
