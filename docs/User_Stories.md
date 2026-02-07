@@ -1,6 +1,6 @@
 ## **Team Number 1**
-### **Team Name**
-#### Day/Time of Weekly Team Meeting
+### Algorithm Alliance
+#### Sunday at 10 am
 ---
 #### Team Members in Meeting:
 - Sarah Suliman
@@ -22,12 +22,14 @@
 **So that:** invalid data does not enter the system.
 
 ##### Effort
-Level	: <level of effort : dimensionless units>
+Level	: 2
 
 ##### Acceptance Criteria
-Given	: 	<context of action>  
-When 	: 	<some action is completed>  
-Then 	: 	<set of observable outcomes>  
+Given: I'm in the role as the developer,    
+When: data enters the work flow
+    AND the data is parsed
+Then: the valid data is filtered
+    AND invalid data is discarded
 
 ---
 
@@ -37,12 +39,13 @@ Then 	: 	<set of observable outcomes>
 **So that:** information persists between runs.
 
 ##### Effort
-Level	: <level of effort : dimensionless units>
+Level	: 8
 
 ##### Acceptance Criteria
-Given	: 	<context of action>  
-When 	: 	<some action is completed>  
-Then 	: 	<set of observable outcomes>  
+Given : I'm in a role as the developer, 
+When : I recieve valid data
+    AND it is stored in a SQL database
+Then : Data can be pulled between sessions.
 
 ---
 
@@ -52,16 +55,17 @@ Then 	: 	<set of observable outcomes>
 **So that:** new contributors can get started quickly.
 
 ##### Effort
-Level	: <level of effort : dimensionless units>
+Level	: 1
 
 ##### Acceptance Criteria
-Given	: 	<context of action>  
-When 	: 	<some action is completed>  
-Then 	: 	<set of observable outcomes>  
+Given: I'm in the role as a team member,  
+When : I gather the program requirements 
+    AND I document start-up instructions 
+Then : There is a .md document 
+    AND it identifies user requirements
+    AND identifies the parameters used in the program
+    AND identifies steps to run the program locally
 
 ---
 
-
-
-
-    
+   
