@@ -9,7 +9,7 @@
 - Lisa Wilder
 
 **Zoom Meeting Recording:**
-
+https://cuboulder.zoom.us/rec/share/-53ixqFSbznVn6QL_gPkwFH2DeFVaT2Ih1Xr8-D9owkQEyNCW10ek3buhQOEgV9e.Nz7o0rhQIwwb3aFo
 
 ---
 
