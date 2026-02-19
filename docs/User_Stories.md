@@ -1,72 +1,74 @@
 ## **Team Number 1**
 ### Algorithm Alliance
-#### Sunday at 10 am
+##### Sunday at 10 am
 ---
-#### Team Members in Meeting:
+#### Team Members:
 - Sarah Suliman
 - Kassidy Flick
 - Mark Olmscheid
 - Lisa Wilder
-
-**Zoom Meeting Recording:**
-https://cuboulder.zoom.us/rec/share/kdcs6ADClZLFWGZ3V57jOOrqaIILrpSd_nBU7sGeNYMtau-HfaRhtprYpKseuu1b.MvKByGGPwgryvHDb?startTime=1770497705000  
-Passcode: UM^.1bhH  
 
 ---
 
 ## User Story Cards
 
 ---
-##### User Story 5
-**As a:** developer,
-**I want:** to parse user input in Python and validate it
-**So that:** invalid data does not enter the system.
+##### User Story 1 (Mark)
+**As a:** back-end developer,  
+**I want:**   
+**So that:**   
 
 ##### Effort
-Level	: 2
+Level	:   
 
 ##### Acceptance Criteria
-Given: I'm in the role as the developer,    
-When: data enters the work flow
-    AND the data is parsed
-Then: the valid data is filtered
-    AND invalid data is discarded
+Given:       
+When:   
+Then:   
 
 ---
 
-##### User Story 11
-**As a:** developer,
-**I want:** to store application data in a SQL database
-**So that:** information persists between runs.
+##### User Story 2 (Sarah)
+**As a:** front-end developer,
+**I want:**   
+**So that:**   
 
 ##### Effort
-Level	: 8
+Level	:   
 
 ##### Acceptance Criteria
-Given : I'm in a role as the developer, 
-When : I recieve valid data
-    AND it is stored in a SQL database
-Then : Data can be pulled between sessions.
+Given :   
+When :   
+Then :   
 
 ---
 
-##### User Story 18
-**As a:** team member,
-**I want:** to document how to run the Python application locally
-**So that:** new contributors can get started quickly.
+##### User Story 3 (Lisa)
+**As a:** user,  
+**I want:**   
+**So that:**   
 
 ##### Effort
-Level	: 1
+Level	:   
 
 ##### Acceptance Criteria
-Given: I'm in the role as a team member,  
-When : I gather the program requirements 
-    AND I document start-up instructions 
-Then : There is a .md document 
-    AND it identifies user requirements
-    AND identifies the parameters used in the program
-    AND identifies steps to run the program locally
+Given:    
+When :   
+Then :   
 
 ---
 
-   
+##### User Story 4 (Kassidy)
+**As a:** user,  
+**I want:**   
+**So that:**   
+
+##### Effort
+Level	:   
+
+##### Acceptance Criteria
+Given:    
+When :   
+Then :   
+
+---
