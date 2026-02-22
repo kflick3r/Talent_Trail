@@ -62,9 +62,39 @@ Then :
 ---
 
 #### User Story 4 (Kassidy) [Results Page Display]
-**As a:** user who has selected a potential career,  
+**As a:** user who has selected a potential career and taken the survey,  
 **I want:**  to see how my selected skills compare to the required skills for that career,
-**So that:**  I can understand my skill gaps and track my progress toward that career. 
+**So that:**  I can understand my skill gaps, match percentage, and the skills I have that apply to the career.  
+
+##### Effort
+Level	:   
+
+##### Acceptance Criteria
+Given:    
+When :   
+Then :   
+
+---
+
+#### User Story 5 [Career Selection]
+**As a:** user,  
+**I want:**  to select a desired career from a searchable dropdown,
+**So that:**  I can begin assessing my skills, education, and experience against that career. 
+
+##### Effort
+Level	:   
+
+##### Acceptance Criteria
+Given:    
+When :   
+Then :   
+
+---
+
+#### User Story 6 [Background Survey]
+**As a:** user,  
+**I want:**  to complete a survey of skills, education, and experience for the selected career
+**So that:**  the system can determine my skill gap. 
 
 ##### Effort
 Level	:   
