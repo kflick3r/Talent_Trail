@@ -1,19 +1,20 @@
-## **Team Number 1**
+# Talent Trail User Story Cards
+## Team Number 1
 ### Algorithm Alliance
-##### Sunday at 10 am
+##### **Sunday at 10 am**
 ---
-#### Team Members:
-- Sarah Suliman
-- Kassidy Flick
-- Mark Olmscheid
-- Lisa Wilder
+<details>
+<summary>Team Members:</summary>
+    <ul>
+        <li>Sarah Suliman</li>
+        <li>Kassidy Flick</li>
+        <li>Mark Olmscheid</li>
+        <li>Lisa Wilder</li>
+    </ul>
+</details>
 
 ---
-
-## User Story Cards
-
----
-##### User Story 1 (Mark)
+#### User Story 1 (Mark)
 **As a:** back-end developer,  
 **I want:**   
 **So that:**   
@@ -28,7 +29,7 @@ Then:
 
 ---
 
-##### User Story 2 (Sarah)
+#### User Story 2 (Sarah)
 **As a:** front-end developer,  
 **I want:** to design and implement a user profile interface where job seekers can enter, edit, and manage their skills  
 **So that:** the system can generate accurate job match results.   
@@ -43,13 +44,12 @@ Then: the backend responds successfully and the new skill is immediately display
 
 ---
 
-##### User Story 3 (Lisa)
-**As a:** user,  
-**I want:**   
-**So that:**   
-
+#### User Story 3 (Lisa)
+**As a:** user,
+**I want:** to receive a PDF of my career roadmap
+**So that:** I can review and access these insights at a later date.
 ##### Effort
-Level	:   
+Level	:   2
 
 ##### Acceptance Criteria
 Given:    
@@ -58,7 +58,7 @@ Then :
 
 ---
 
-##### User Story 4 (Kassidy)
+#### User Story 4 (Kassidy)
 **As a:** user who has selected a potential career,  
 **I want:**  to see how my selected skills compare to the required skills for that career,
 **So that:**  I can understand my skill gaps and track my progress toward that career. 

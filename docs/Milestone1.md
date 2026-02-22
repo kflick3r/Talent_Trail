@@ -49,7 +49,30 @@ People often struggle to evaluate their skill sets and understand whether they a
 
   
 ---
-    
+
+## MVP Structure/Functional Requirements:
+MVP Goal: Deliver a fully functional career gap analysis tool that allows users to select a career, assess their skills, and recieve a personalized report.
+
+**User Flow**
+1. User lands on homepage
+2. User selects career from searchable dropdown (Trie-based search)
+3. Backend retrieves:
+    - Career description
+    - Required skills list
+4. User completes survey (Yes/No)
+5. Backend:
+    - Calculates match %
+    - Identifies missing skills
+6. Results page displays:
+    - Career description
+    - Match percentage
+    - Missing skills
+    - Selected skills users have
+    - Button to generate PDF
+7. PDF of report is generated and downloaded
+
+---
+
 ## Development Method: 
 1. Define core user stories and the MVP functional requirements, such as:
    - User selects a career form a searchable dropdown (Trie-Based Search)
@@ -89,3 +112,26 @@ People often struggle to evaluate their skill sets and understand whether they a
     
 ## Project Tracking Software Link:
 Jira (Trello) https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&groupBy=status&atlOrigin=eyJpIjoiZTUxNjQ0MDc4ZTE3NDExY2IxYTI4ZmFiZDhiOGQ1MzIiLCJwIjoiaiJ9
+
+---
+
+## Potential Add-on Features:
+| Feature | Description | Benefit |
+|---------|-------------|--------|
+| 1–5 Skill Rating | Replace Yes/No survey with a 1–5 scale | Provides more nuanced insight into skill mastery |
+| Skill Categories | Organize skills into Technical, Soft Skills, Education, Experience | Enables a more detailed and meaningful analysis |
+| Career Progress Tracking | Track user progress over multiple sessions | Supports long-term skill development and repeated assessments |
+| Multi-Career Comparison | Compare user skills across multiple careers | Helps users explore alternative career paths |
+| Skill Weighting | Weight skills by importance for career | Improves match accuracy and career relevance |
+
+---
+
+## Potential Risks & Edge Cases
+
+| Risk / Edge Case | Description | Mitigation Strategy |
+|-----------------|-------------|------------------|
+| Survey Overload | Some careers have many skills; survey may be overwhelming | Potentially limit 10–20 key skills per career? |
+| O*NET Data Gaps | Missing or outdated data for certain careers | Use a subset of careers for MVP? |
+| PDF Generation Errors | Large reports may fail or break layout | Test PDF generation thoroughly; provide fallback to simple HTML export? |
+| Misinterpretation of Match % | Users may assume match % guarantees career success | Include disclaimer: “Based on self-assessment and O*NET data” |
+| Trie Search Edge Cases | Typing errors may prevent career selection | Implement fuzzy matching and autocomplete suggestions |

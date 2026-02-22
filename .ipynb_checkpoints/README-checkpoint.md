@@ -26,9 +26,9 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
 - Career description
 - Match percentage
 - Missing skills
-- Selected skills
+- Selected skills users have
 - Button to generate PDF
-7. PDF is generated and downloaded
+7. PDF of report is generated and downloaded
 
 ---
 
