@@ -29,17 +29,17 @@ Then:
 ---
 
 ##### User Story 2 (Sarah)
-**As a:** front-end developer,
-**I want:** to design and implement a user profile interface where job seekers can enter, edit, and manage their skills
-**So that:** the system can generate accurate job match results.   
+**As a:**    front-end developer,
+**I want:**    to design and implement a user profile interface where job seekers can enter, edit, and manage their skills
+**So that:**    the system can generate accurate job match results.   
 
 ##### Effort
 Level	:   5
 
 ##### Acceptance Criteria
-Given : a user enters a valid skill in the profile form
-When : the frontend sends a request to the backend
-Then : the backend responds successfully and the new skill is immediately displayed in the user’s skill list
+Given:    a user enters a valid skill in the profile form
+When:    the frontend sends a request to the backend
+Then:    the backend responds successfully and the new skill is immediately displayed in the user’s skill list
 
 ---
 
