@@ -1,16 +1,19 @@
 # Talent Trail User Story Cards
-## Team Number 1
-### Algorithm Alliance
-##### **Sunday at 10 am**
----
 <details>
-<summary>Team Members:</summary>
-    <ul>
-        <li>Sarah Suliman</li>
-        <li>Kassidy Flick</li>
-        <li>Mark Olmscheid</li>
-        <li>Lisa Wilder</li>
-    </ul>
+<summary><strong>Algorithm Alliance - Team 1</strong></summary>
+
+<p><strong>Meeting Time:</strong> Sunday @ 10:00 AM</p>
+
+<hr>
+
+<p><strong>Team Members:</strong></p>
+<ul>
+    <li>Sarah Suliman</li>
+    <li>Kassidy Flick</li>
+    <li>Mark Olmscheid</li>
+    <li>Lisa Wilder</li>
+</ul>
+
 </details>
 
 ---
