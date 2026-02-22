@@ -14,17 +14,15 @@
 
 #### Scheduled Weekly Team Meeting
 **Sunday at 10 a.m. (MST) via Zoom**
-
   
 ---
 
 ## Vision Statement:
-Talent Trail is a career platform that creates personalized roadmaps to help users pursue their professional goals. Users provide their current skills, and Talent Trail suggests development plans to help them achieve potential careers. Users can also track and visualize their progress and acquired skills.
-
+Talent Trail is a web-based career exploration tool that helps users evaluate how closely their current skills, education, and experience align with the selected desired career and professional goals. Using occupational data from the O*NET database, Talent Trail generates a personalized gap analysis report to show users their match percentage and what is still needed to achieve potential careers. 
     
 ---
 ## Motivation: 
-People often struggle to evaluate their skill sets and develop a comprehensive plan to achieve their desired career. Figuring out what is needed to reach a dream career can be overwhelming and time-intensive, with conflicting information across the internet. Talent Trail aligns real-world requirements with a user’s current skill set to develop a tangible and digestible step-by-step roadmap.  
+People often struggle to evaluate their skill sets and understand whether they are qualified for their desired career. Figuring out what is needed to reach a dream career can be overwhelming and time-intensive, with conflicting information across the internet. Talent Trail aligns the O*NET database with a user’s information to provide clear, data-driven comparisons. This transforms career planning into a tangible and digestible evaluation.  
 
   
 ---
@@ -54,16 +52,35 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
     
 ## Development Method: 
 1. Define core user stories and the MVP functional requirements, such as:
-   - An end user identifies missing skills based on career requirements
-   - A developer builds an algorithm to parse through data and compare with user input. 
-2. Identify the system requirements and tech stack 
+   - User selects a career form a searchable dropdown (Trie-Based Search)
+   - System retrieves career description and required skills from O*NET database
+   - User completes a skill, education, and experience survey
+   - System Calculates:
+       - Match Percentage
+       - Missing Skills, Education, and/or Experience
+   - System generates results page and downloadable PDF report 
+2. Identify the system requirements and tech stack:
+   - Backend: Python (Flask)
+   - Database: SQL / SQLite?
+   - Frontend: HTML/CSS
+   - Version Control: Github
+   - PDF generation: Python Library (reportlab or HTML-to-PDF)
 3. Design database schema for:
-    - Users
-    - Career Data
+    - Careers
     - Skills
+    - Education
     - Previous Experience
-4. Implement backend API based on functional requirements
-5. Build frontend views for user input, skills roadmap, progress tracking, and emailed results
+4. Implement backend API based on functional requirements:
+   - Route: Landing Page
+   - Route: Career Selection
+   - Route: Survey Submission
+   - Route: Results Page
+   - Route: PDF generation
+5. Build frontend views:
+   - Landing Page
+   - Survey Page
+   - Results Page
+   - PDF Download Option
 6. Integrate frontend and backend components
 7. Conduct testing and prepare final presentation and documentation.
 
