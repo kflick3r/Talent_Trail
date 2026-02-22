@@ -59,9 +59,9 @@ Then :
 ---
 
 ##### User Story 4 (Kassidy)
-**As a:** user,  
-**I want:**   
-**So that:**   
+**As a:** user who has selected a potential career,  
+**I want:**  to see how my selected skills compare to the required skills for that career,
+**So that:**  I can understand my skill gaps and track my progress toward that career. 
 
 ##### Effort
 Level	:   
