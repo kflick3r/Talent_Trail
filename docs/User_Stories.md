@@ -44,12 +44,11 @@ Then: the backend responds successfully and the new skill is immediately display
 ---
 
 ##### User Story 3 (Lisa)
-**As a:** user,  
-**I want:**   
-**So that:**   
-
+**As a:** user,
+**I want:** to receive a PDF of my career roadmap
+**So that:** I can review and access these insights at a later date.
 ##### Effort
-Level	:   
+Level	:   2
 
 ##### Acceptance Criteria
 Given:    
