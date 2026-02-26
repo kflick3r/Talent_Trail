@@ -181,3 +181,39 @@ Given: the user completes the survey
 When: the match % algorithm runs  
 Then: a numerical match percentage is calculated  
     AND missing skills, education, or experience are identified.
+
+---
+
+#### User Story 10 [Test-Driven Development/Automated Testing]
+**As a:** developer  
+**I want:** to write automated tests for backend adn frontend features using TDD principles    
+**So that:** I can ensure the system works correctly, catches bugs early, and maintains reliability.
+
+##### Effort Level: 
+
+##### Acceptance Criteria:
+Given: a new backend development  
+When: a unit test runs  
+Then: it verifies the endpoint returns correct data and handles errors.
+
+Given: a new frontend component  
+When: automated tests are run  
+Then: it verifies correct rendering, user input handling, and interaction flow.
+
+Given: the overall system  
+When: end-to-end tests run  
+Then: it verifies that user flow works as expected.  
+
+---
+
+#### User Story 11 [Flask and SQL]
+**As a:** back-end developer  
+**I want:** to set up the Flask framework and SQL database for the project  
+**So that:** the application has a stable backend environment to build API endpoints and store/retrieve data.
+
+##### Effort Level: 
+
+##### Acceptance Criteria:
+Given: a backend route needs to retrieve data  
+When: a request is made  
+Then: it successfully queries the database and returns the expected result.
