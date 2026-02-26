@@ -19,16 +19,16 @@
 ---
 #### User Story 1 (Mark)
 **As a:** back-end developer,  
-**I want:**   
-**So that:**   
+**I want:** The O*NET data to be organized and stored
+**So that:**  So that it can be queried by the front end and the roadmap/algorithm can run against a consistent data model
 
 ##### Effort
-Level	:   
+Level	:   5
 
 ##### Acceptance Criteria
-Given:       
-When:   
-Then:   
+Given: O*NET data has successfully been identified/stored
+When: Then front end queries the needed data
+Then: It is pulled correctly and displayed
 
 ---
 
