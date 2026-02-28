@@ -39,7 +39,7 @@ Then: the data is pulled correctly and displayed
 **So that:** the system can display a weighted compatability percentage and provide clear feedback on missing skills or required qualifications.   
 
 ##### Effort
-Level	:
+Level:
 
 ##### Acceptance Criteria
 Given: the homepage loads  

@@ -34,8 +34,8 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
 
 ## Tech Stack
 - Backend: Python, Flask
-- Database: SQL (SQLite?)
-- Frontend: HTML
+- Database: PostgreSQL 
+- Frontend: HTML, React
 - Version Control: Github
 - PDF Generation: Generate HTML and Convert to PDF (or Python reportlab)
 

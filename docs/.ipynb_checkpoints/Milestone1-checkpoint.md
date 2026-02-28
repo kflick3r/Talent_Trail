@@ -111,7 +111,10 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
 ---
     
 ## Project Tracking Software Link:
-Jira (Trello) https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&groupBy=status&atlOrigin=eyJpIjoiZTUxNjQ0MDc4ZTE3NDExY2IxYTI4ZmFiZDhiOGQ1MzIiLCJwIjoiaiJ9
+Weekly Agile/SCRUM meetings. Jira is organized by Milestone and Userstories.
+
+**Jira** (Trello):
+https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&groupBy=status&atlOrigin=eyJpIjoiZTUxNjQ0MDc4ZTE3NDExY2IxYTI4ZmFiZDhiOGQ1MzIiLCJwIjoiaiJ9
 
 ---
 
