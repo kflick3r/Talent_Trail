@@ -113,7 +113,7 @@ Then : Then it displays:
 
 #### User Story 6 [Career Selection]
 **As a:** user,  
-**I want:**  to select a desired career,
+**I want:**  to select a desired career,  
 **So that:**  I can begin assessing my skills, education, and experience.  
 
 ##### Effort
@@ -149,23 +149,8 @@ Then: the results page displays:
 - A "Download PDF" Button that downloads a PDF version of the results
 
 ---
-
-#### User Story 8 [Trie Tree Search]
-**As a:** user  
-**I want:** to search for careers in a responsive, auto-complete dropdown  
-**So that:** I can quickly find and select my desired career.
-
-##### Effort Level: 
-
-##### Acceptance Criteria:
-Given: the dropdown is displayed  
-When: the user types a few letters  
-Then: the system suggests matching career names in real time  
-    AND the search is fast and responsive for all careers in the dataset.
-
----
-
-#### User Story 9 [Match Percentage Algorithm]
+    
+#### User Story 8 [Match Percentage Algorithm]
 **As a:** user  
 **I want:** the system to calculate how closely my skills, education, and experience match the selected career  
 **So that:** I know what I have vs. what I still need.
@@ -179,7 +164,7 @@ Then: a numerical match percentage is calculated.
 
 ---
 
-#### User Story 10 [Test-Driven Development/Automated Testing]
+#### User Story 9 [Test-Driven Development/Automated Testing]
 **As a:** developer  
 **I want:** to write automated tests for backend and frontend features using TDD principles    
 **So that:** I can ensure the system works correctly, catches bugs early, and maintains reliability.
@@ -201,7 +186,7 @@ Then: it verifies that user flow works as expected.
 
 ---
 
-#### User Story 11 [Flask]
+#### User Story 10 [Flask]
 **As a:** back-end developer  
 **I want:** to set up the Flask framework  
 **So that:** through the web server, I create webpages that host different information for the user. 
@@ -215,7 +200,7 @@ Then: it successfully returns the expected result.
 
 ---
 
-#### User Story 12 [SQL]
+#### User Story 11 [SQL]
 **As a:** back-end developer  
 **I want:** to set up the SQL database for the website  
 **So that:** the application has a stable backend environment to build API endpoints and store/retrieve data.
@@ -226,3 +211,21 @@ Then: it successfully returns the expected result.
 Given: a backend route needs to retrieve data  
 When: a request is made  
 Then: it successfully queries the database and returns the expected result.
+
+---
+<!---
+#### User Story - Added Feature? [Trie Tree Search]
+#**As a:** user  
+#**I want:** to search for careers in a responsive, auto-complete dropdown  
+#**So that:** I can quickly find and select my desired career.
+
+##### Effort Level: 
+
+##### Acceptance Criteria:
+#Given: the dropdown is displayed  
+#When: the user types a few letters  
+#Then: the system suggests matching career names in real time  
+    #AND the search is fast and responsive for all careers in the dataset.
+
+---
+--->
