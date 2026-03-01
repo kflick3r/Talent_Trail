@@ -23,7 +23,7 @@
 **So that:**  it can be queried by the front end and the roadmap/algorithm can run against a consistent data model.  
 
 ##### Effort
-Level	:   5
+Level:   3
 
 ##### Acceptance Criteria
 Given: O*NET data has successfully been identified/stored  
@@ -39,7 +39,7 @@ Then: the data is pulled correctly and displayed
 **So that:** the system can display a weighted compatability percentage and provide clear feedback on missing skills or required qualifications.   
 
 ##### Effort
-Level:
+Level: 5
 
 ##### Acceptance Criteria
 Given: the homepage loads  
@@ -61,7 +61,7 @@ Then: the system displays the results page with match %, matched skills, and mis
 **I want:** the web interface and PDF to be clean, intuitive, and visually appealing  
 **So that:** I can navigate the site easily and understand my results.
 
-##### Effort Level: 
+##### Effort Level: 3
 
 ##### Acceptance Criteria:
 Given: any page is loaded  
@@ -77,7 +77,7 @@ Then: fonts, colors, buttons, and layout are consistent and readable
 **So that:** I can review and access these insights at a later date.  
 
 ##### Effort
-Level	:   2
+Level:   2
 
 ##### Acceptance Criteria
 Given: the results page is displayed  
@@ -97,7 +97,7 @@ Then : a PDF is generated with:
 **So that:**  I can understand my skill gaps, match percentage, and the skills I have that apply to the career.  
 
 ##### Effort
-Level	:   
+Level:   3
 
 ##### Acceptance Criteria
 Given: the survey is completed  
@@ -113,20 +113,16 @@ Then : Then it displays:
 
 #### User Story 6 [Career Selection]
 **As a:** user,  
-**I want:**  to select a desired career from a searchable dropdown,
+**I want:**  to select a desired career,
 **So that:**  I can begin assessing my skills, education, and experience.  
 
 ##### Effort
-Level	:   
+Level:   3
 
 ##### Acceptance Criteria
-Given: the homepage loads  
-When : the user opens the dropdown  
-Then : the list of careers appears and is searchable with a Trie Tree algoithm.   
-
 Given: a career is selected  
 When:  the user clicks "Next"  
-Then: the survey page loads with the correct career's required skills.
+Then: the survey page loads.
 
 ---
 
@@ -136,7 +132,7 @@ Then: the survey page loads with the correct career's required skills.
 **So that:**  the system can determine my skill gap.  
 
 ##### Effort
-Level	:   
+Level:    5
 
 ##### Acceptance Criteria
 Given: the survey page is displayed  
@@ -174,22 +170,21 @@ Then: the system suggests matching career names in real time
 **I want:** the system to calculate how closely my skills, education, and experience match the selected career  
 **So that:** I know what I have vs. what I still need.
 
-##### Effort Level: 
+##### Effort Level: 5
 
 ##### Acceptance Criteria:
 Given: the user completes the survey  
 When: the match % algorithm runs  
-Then: a numerical match percentage is calculated  
-    AND missing skills, education, or experience are identified.
+Then: a numerical match percentage is calculated.
 
 ---
 
 #### User Story 10 [Test-Driven Development/Automated Testing]
 **As a:** developer  
-**I want:** to write automated tests for backend adn frontend features using TDD principles    
+**I want:** to write automated tests for backend and frontend features using TDD principles    
 **So that:** I can ensure the system works correctly, catches bugs early, and maintains reliability.
 
-##### Effort Level: 
+##### Effort Level: 8
 
 ##### Acceptance Criteria:
 Given: a new backend development  
@@ -206,12 +201,26 @@ Then: it verifies that user flow works as expected.
 
 ---
 
-#### User Story 11 [Flask and SQL]
+#### User Story 11 [Flask]
 **As a:** back-end developer  
-**I want:** to set up the Flask framework and SQL database for the project  
+**I want:** to set up the Flask framework  
+**So that:** through the web server, I create webpages that host different information for the user. 
+
+##### Effort Level: 5
+
+##### Acceptance Criteria:
+Given: a user interacts with the website  
+When: a request is made  
+Then: it successfully returns the expected result.
+
+---
+
+#### User Story 12 [SQL]
+**As a:** back-end developer  
+**I want:** to set up the SQL database for the website  
 **So that:** the application has a stable backend environment to build API endpoints and store/retrieve data.
 
-##### Effort Level: 
+##### Effort Level: 5
 
 ##### Acceptance Criteria:
 Given: a backend route needs to retrieve data  
