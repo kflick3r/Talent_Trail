@@ -22,8 +22,7 @@
 **I want:** the O*NET data to be organized and stored  
 **So that:**  it can be queried by the front end and the roadmap/algorithm can run against a consistent data model.  
 
-##### Effort
-Level:   3
+##### Effort Level:   3
 
 ##### Acceptance Criteria
 Given: O*NET data has successfully been identified/stored  
@@ -38,8 +37,7 @@ Then: the data is pulled correctly and displayed
 **I want:** to design and implement a user flow for selecting a job position and completing a corresponding skills and education questionnaire,   
 **So that:** the system can display a weighted compatability percentage and provide clear feedback on missing skills or required qualifications.   
 
-##### Effort
-Level: 5
+##### Effort Level: 5
 
 ##### Acceptance Criteria
 Given: the homepage loads  
@@ -76,8 +74,7 @@ Then: fonts, colors, buttons, and layout are consistent and readable
 **I want:** to receive a PDF of my career analysis  
 **So that:** I can review and access these insights at a later date.  
 
-##### Effort
-Level:   2
+##### Effort Level:   2
 
 ##### Acceptance Criteria
 Given: the results page is displayed  
@@ -96,8 +93,7 @@ Then : a PDF is generated with:
 **I want:**  to see how my selected skills compare to the required skills for that career,  
 **So that:**  I can understand my skill gaps, match percentage, and the skills I have that apply to the career.  
 
-##### Effort
-Level:   3
+##### Effort Level:   3
 
 ##### Acceptance Criteria
 Given: the survey is completed  
@@ -107,7 +103,7 @@ Then : Then it displays:
 - Match Percentage
 - Matched Skills, Education, and Experience
 - Missing Skills, Education, and Experience
-- A "Download PDF" Button that downloads a PDF version of the results
+- A 'Download PDF' Button that downloads a PDF version of the results
 
 ---
 
@@ -116,8 +112,7 @@ Then : Then it displays:
 **I want:**  to select a desired career,  
 **So that:**  I can begin assessing my skills, education, and experience.  
 
-##### Effort
-Level:   3
+##### Effort Level:   3
 
 ##### Acceptance Criteria
 Given: a career is selected  
@@ -131,8 +126,7 @@ Then: the survey page loads.
 **I want:**  to complete a survey of skills, education, and experience for the selected career  
 **So that:**  the system can determine my skill gap.  
 
-##### Effort
-Level:    5
+##### Effort Level:    5
 
 ##### Acceptance Criteria
 Given: the survey page is displayed  
