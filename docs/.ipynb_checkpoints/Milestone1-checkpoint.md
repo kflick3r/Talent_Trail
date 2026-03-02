@@ -55,7 +55,7 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
 
 **User Flow**
 1. User lands on homepage
-2. User selects career from searchable dropdown (Trie-based search)
+2. User selects career from a dropdown
 3. Backend retrieves:
     - Career description
     - Required skills list
@@ -75,7 +75,7 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
 
 ## Development Method: 
 1. Define core user stories and the MVP functional requirements, such as:
-   - User selects a career form a searchable dropdown (Trie-Based Search)
+   - User selects a career from a dropdown
    - System retrieves career description and required skills from O*NET database
    - User completes a skill, education, and experience survey
    - System Calculates:
@@ -112,6 +112,7 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
     
 ## Project Tracking Software Link:
 Weekly Agile/SCRUM meetings. Jira is organized by Milestone and Userstories.
+
 
 **Jira** (Trello):
 https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&groupBy=status&atlOrigin=eyJpIjoiZTUxNjQ0MDc4ZTE3NDExY2IxYTI4ZmFiZDhiOGQ1MzIiLCJwIjoiaiJ9
