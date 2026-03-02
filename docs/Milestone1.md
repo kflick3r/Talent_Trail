@@ -122,6 +122,7 @@ https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&gr
 ## Potential Add-on Features:
 | Feature | Description | Benefit |
 |---------|-------------|--------|
+| Trie Tree Career Selection | Replace Career Selection Dropdown with a Trie Tree Algorithm | Better User Experience |
 | 1–5 Skill Rating | Replace Yes/No survey with a 1–5 scale | Provides more nuanced insight into skill mastery |
 | Skill Categories | Organize skills into Technical, Soft Skills, Education, Experience | Enables a more detailed and meaningful analysis |
 | Career Progress Tracking | Track user progress over multiple sessions | Supports long-term skill development and repeated assessments |
