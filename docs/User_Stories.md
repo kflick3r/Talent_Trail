@@ -80,7 +80,7 @@ Then: fonts, colors, buttons, and layout are consistent and readable
 Given: the results page is displayed  
 When : the user clicks the "Download PDF" button  
 Then : a PDF is generated with:
-- Career Name and Discription
+- Career Name and Description
 - Match Percentage
 - Matched Skills, Education, and Experience
 - Missing Skills, Education, and Experience
