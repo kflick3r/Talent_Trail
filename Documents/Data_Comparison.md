@@ -24,9 +24,9 @@ For another example, an original Level rating score of 5 is converted to a stand
 
 ## Algorithm for Comparison
 
-- The application asks users to rate their current proficiency for each selected skill on a 0–7 scale, matching the ONET Level Scale.
+- The application asks users to rate their current proficiency for each selected skill on a 0-7 scale, matching the ONET Level Scale.
 
-User Input = 0 - 5
+User Input = 0 - 7
 
 - The application will then calculate the gap between the ONET skill level and User's Skill Level
 
