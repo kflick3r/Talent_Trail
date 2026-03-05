@@ -12,6 +12,14 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
 - **Mark Olmscheid** (GitHub: `Olmscheid`, Email: Mark.Olmscheid@colorado.edu)
 - **Sarah Suliman** (GitHub: `sssuliman`, Email: Sarah.Suliman@colorado.edu)
 
+## Minimum Viable Product
+
+1. Present available occupations to the user
+2. Accept and process user-provided qualification data
+3. Retrieve the occupational requirements associated with a selected job
+4. Compare user data to occupational requirements / education distribution
+5. Display the comparison results in a readable format
+
 ### User Flow
 1. User lands on homepage
 2. User selects career from searchable dropdown (Trie-based search)
