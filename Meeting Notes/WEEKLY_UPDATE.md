@@ -97,7 +97,7 @@ Overall the team has had great progress and communication this week, however, th
 - **Kassidy:** Cleaned up and completed user stories for effort-level voting, added corresponding tasks to Jira, organized the repository with additional folders, and researched trie tree logic while drafting early search bar pseudocode.  
 - **Mark:** Explored and identified ONET data for the project’s core datasets, investigated the structure of the data, and began outlining MVP data-input requirements and overall technical needs.  
 - **Lisa:** Researched how SQL stores data and how it integrates into a full-stack application, then applied that research to team conversations around layout, data requests, and user input storage.  
-- **Sarah:** : UPDATE NEEDED
+- **Sarah:** : Designed initial front-end layout ideas and discussed ideas on how to structure the website based on the MVP deliverables.
 ---
 
 ## Notes
