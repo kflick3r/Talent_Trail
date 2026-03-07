@@ -6,7 +6,7 @@ CREATE TABLE ete_categories (
   PRIMARY KEY (element_id, scale_id, category),
   FOREIGN KEY (element_id) REFERENCES content_model_reference(element_id),
   FOREIGN KEY (scale_id) REFERENCES scales_reference(scale_id));
-GO
+
 
 INSERT INTO ete_categories (element_id, scale_id, category, category_description) VALUES ('2.D.1', 'RL', 1, 'Less than a High School Diploma');
 INSERT INTO ete_categories (element_id, scale_id, category, category_description) VALUES ('2.D.1', 'RL', 2, 'High School Diploma - or the equivalent (for example, GED)');
@@ -49,5 +49,5 @@ INSERT INTO ete_categories (element_id, scale_id, category, category_description
 INSERT INTO ete_categories (element_id, scale_id, category, category_description) VALUES ('3.A.3', 'OJ', 7, 'Over 2 years, up to and including 4 years');
 INSERT INTO ete_categories (element_id, scale_id, category, category_description) VALUES ('3.A.3', 'OJ', 8, 'Over 4 years, up to and including 10 years');
 INSERT INTO ete_categories (element_id, scale_id, category, category_description) VALUES ('3.A.3', 'OJ', 9, 'Over 10 years');
-GO
+
 
