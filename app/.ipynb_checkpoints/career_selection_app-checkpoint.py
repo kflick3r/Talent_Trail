@@ -30,7 +30,7 @@ def get_careers():
 @app.route("/")
 def landing():
     careers = get_careers()
-    return render_template("landing_page.html", careers=careers)
+    return render_template("career_selection.html", careers=careers)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
