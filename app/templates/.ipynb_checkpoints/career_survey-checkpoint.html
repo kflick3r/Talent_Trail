@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Career Survey</title>
+    </head>
+    <body>
+        <h1>Top Skills for Selected Career</h1>
+        <h2>Self-Survey</h2>
+        <form method="post" action="/submit_survey">
+            <ul>
+                {% for skill, value in skills %}
+                <li>
+                    <span class="skill-name">{{ skill }}</span>
+
+                    <div class="rating">
+                        Rate your proficiency (0-7):
+                        {% for i in range(0, 8) %}
+                            <label>
+                                <input type="radio" name="rating_{{ loop.index0 }}" value="{{ i }}" required> {{ i }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <button type="submit">Submit Survey</button>
+        </form>
+    </body>
+</html>
