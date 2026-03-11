@@ -28,11 +28,11 @@ Each page includes a **low-fidelity mockup** (ASCII wireframe). These may later 
 ## Page Title
 Landing Page
 
-## Page Description
+### Page Description
 Purpose: Introduce Talent Trail, explain what the platform does, and show users how to use the site before they move into the career selection flow.
 
 **Mockup (low-fidelity):**
-```
+
 ------------------------------------------------------------
                          Talent Trail
               Discover careers that match your skills
@@ -59,28 +59,29 @@ How to Use
                   [ Start Career Search ]
 
 ------------------------------------------------------------
-About | Contact | GitHub
-------------------------------------------------------------
-```
+                  About | Contact | GitHub
 
-## Parameters Needed for the Page
+------------------------------------------------------------
+
+
+### Parameters Needed for the Page
 - Route params: none
 - Query params: none
 
-## Data Needed to Render the Page
+### Data Needed to Render the Page
 - Static site title
 - Tagline
 - About section text
 - How-to-use steps
 - Navigation links
 
-## Link Destinations for the Page
+### Link Destinations for the Page
 - **Start Career Search** → `/search`
 - **About** → `/`
 - **Contact** → `/contact`
 - **GitHub** → external repository link
 
-## Tests for Verifying Rendering of the Page
+### Tests for Verifying Rendering of the Page
 1. **Renders key UI elements**
    - Site title displays
    - Tagline displays
@@ -89,6 +90,7 @@ About | Contact | GitHub
 2. **Button navigation**
    - Clicking "Start Career Search" navigates to the search page
 3. **Footer links**
+   - Footer renders at bottom of page
    - About, Contact, and GitHub links render and are clickable
 
 ---
@@ -98,11 +100,11 @@ About | Contact | GitHub
 ## Page Title
 Search Page
 
-## Page Description
+### Page Description
 Purpose: Allow users to choose a career from a dropdown menu and continue to the quiz for that selected career.
 
 **Mockup (low-fidelity):**
-```
+
 ------------------------------------------------------------
                          Talent Trail
 ------------------------------------------------------------
@@ -113,43 +115,46 @@ Select a Career
 
 Example Careers
 
-• Back-end Developer
-• Front-end Developer
-• Data Analyst
-• Software Engineer
+• Back-end Developer  
+• Front-end Developer  
+• Data Analyst  
+• Software Engineer  
 
 ------------------------------------------------------------
 
-                 [ Continue to Quiz ]
+                    [ Continue to Quiz ]
 
 ------------------------------------------------------------
-About | Contact | GitHub
-------------------------------------------------------------
-```
+                  About | Contact | GitHub
 
-## Parameters Needed for the Page
+------------------------------------------------------------
+
+
+### Parameters Needed for the Page
 - Route params: none
 - Query params: optional `?career=name`
 
-## Data Needed to Render the Page
+### Data Needed to Render the Page
 - Career dropdown options
 - Selected career value
 - Continue button state
 
-## Link Destinations for the Page
+### Link Destinations for the Page
 - **Continue to Quiz** → `/quiz`
 - **About** → `/`
 - **Contact** → `/contact`
 - **GitHub** → external repository link
 
-## Tests for Verifying Rendering of the Page
+### Tests for Verifying Rendering of the Page
 1. **Dropdown renders**
    - Career dropdown is visible
    - Career options load correctly
+   - Continue button enabled/disabled state
 2. **Selection behavior**
    - User can select one career from the dropdown
 3. **Continue flow**
    - Clicking "Continue to Quiz" after selecting a career navigates to the quiz page
+   - Continue button is disabled if no career is selected
 4. **Footer links**
    - About, Contact, and GitHub links render correctly
 
@@ -160,11 +165,11 @@ About | Contact | GitHub
 ## Page Title
 Quiz Page
 
-## Page Description
+### Page Description
 Purpose: Let users rate their experience with required skills and choose their education level so Talent Trail can calculate compatibility with the selected career.
 
 **Mockup (low-fidelity):**
-```
+
 ------------------------------------------------------------
                          Talent Trail
 ------------------------------------------------------------
@@ -174,14 +179,14 @@ Back-end Developer Skills Quiz
 Rate your experience with the following skills
 using a scale from 0–7.
 
-0 = No experience
+0 = No experience  
 7 = Expert level
 
 ------------------------------------------------------------
 
-Python           0 1 2 3 4 5 6 7
-SQL              0 1 2 3 4 5 6 7
-React            0 1 2 3 4 5 6 7
+Python           0 1 2 3 4 5 6 7  
+SQL              0 1 2 3 4 5 6 7  
+React            0 1 2 3 4 5 6 7  
 
 ------------------------------------------------------------
 
@@ -194,30 +199,31 @@ Education Level
            [ Return to Homepage ]   [ Submit Quiz ]
 
 ------------------------------------------------------------
-About | Contact | GitHub
-------------------------------------------------------------
-```
+                  About | Contact | GitHub
 
-## Parameters Needed for the Page
+------------------------------------------------------------
+
+
+### Parameters Needed for the Page
 - Route params: none
 - Query params: optional `?career=name`
 - State params: selected career passed from the search page
 
-## Data Needed to Render the Page
-- Career name
-- Skill list
-- Ranking scale values (0–7)
-- Education dropdown options
-- User-selected responses
+### Data Needed to Render the Page
+- Career name  
+- Skill list  
+- Ranking scale values (0–7)  
+- Education dropdown options  
+- User-selected responses  
 
-## Link Destinations for the Page
+### Link Destinations for the Page
 - **Submit Quiz** → `/results`
 - **Return to Homepage** → `/`
 - **About** → `/`
 - **Contact** → `/contact`
 - **GitHub** → external repository link
 
-## Tests for Verifying Rendering of the Page
+### Tests for Verifying Rendering of the Page
 1. **Quiz content renders**
    - Career title displays
    - Skill rows display
@@ -226,6 +232,8 @@ About | Contact | GitHub
    - User can select a value for each skill
    - User can choose an education level
 3. **Submit flow**
+   - User cannot submit quiz if any skill is unanswered
+   - Education level must be selected before submission
    - Clicking "Submit Quiz" navigates to the results page
 4. **Return flow**
    - Clicking "Return to Homepage" navigates to the landing page
@@ -239,28 +247,28 @@ About | Contact | GitHub
 ## Page Title
 Results Page
 
-## Page Description
+### Page Description
 Purpose: Display the user’s compatibility score, matched skills, missing skills, and feedback after the quiz is submitted.
 
 **Mockup (low-fidelity):**
-```
+
 ------------------------------------------------------------
                          Talent Trail
 ------------------------------------------------------------
 
 Career Compatibility Results
 
-Career
-Back-end Developer
-
-Compatibility Score
-78%
+Career  
+Back-end Developer  
+  
+Compatibility Score  
+78%  
 
 ------------------------------------------------------------
 
 Matched Skills
 
-• Python
+• Python  
 • SQL
 
 ------------------------------------------------------------
@@ -278,33 +286,34 @@ back-end developer roles.
 
 ------------------------------------------------------------
 
-           [ Return to Quiz ]   [ Homepage ]
+              [ Return to Quiz ]   [ Homepage ]
 
 ------------------------------------------------------------
-About | Contact | GitHub
+                  About | Contact | GitHub
+                  
 ------------------------------------------------------------
-```
 
-## Parameters Needed for the Page
+
+### Parameters Needed for the Page
 - Route params: none
 - Query params: optional `?career=name`
 - State params: quiz responses and selected career
 
-## Data Needed to Render the Page
+### Data Needed to Render the Page
 - Career title
-- Compatibility score
+- Compatibility score (calcuated value)
 - Matched skills list
 - Missing skills list
 - Feedback message
 
-## Link Destinations for the Page
+### Link Destinations for the Page
 - **Return to Quiz** → `/quiz`
 - **Homepage** → `/`
 - **About** → `/`
 - **Contact** → `/contact`
 - **GitHub** → external repository link
 
-## Tests for Verifying Rendering of the Page
+### Tests for Verifying Rendering of the Page
 1. **Results content renders**
    - Career title displays
    - Compatibility score displays
@@ -316,6 +325,9 @@ About | Contact | GitHub
    - Homepage button navigates correctly
 3. **Footer links**
    - About, Contact, and GitHub links render correctly
+4. **Score Validation**
+   - Compatibility score is between 0 and 100
+   - Score updates correctly based on quiz responses
 
 ---
 
@@ -324,22 +336,22 @@ About | Contact | GitHub
 ## Page Title
 Contact Page
 
-## Page Description
+### Page Description
 Purpose: Provide team member contact information and a link to the project GitHub repository.
 
 **Mockup (low-fidelity):**
-```
+
 ------------------------------------------------------------
-                         Talent Trail
+                        Talent Trail
                          Contact Us
 ------------------------------------------------------------
 
 Team Members
 
-• Lisa Wilder (GitHub: Wilder407, Email: Lisa.Wilder@colorado.edu)
-• Kassidy Flick (GitHub: kflick3r, Email: kassidy.flick@colorado.edu)
-• Mark Olmscheid (GitHub: Olmscheid, Email: Mark.Olmscheid@colorado.edu)
-• Sarah Suliman (GitHub: sssuliman, Email: Sarah.Suliman@colorado.edu)
+• Lisa Wilder (GitHub: Wilder407, Email: Lisa.Wilder@colorado.edu)  
+• Kassidy Flick (GitHub: kflick3r, Email: kassidy.flick@colorado.edu)  
+• Mark Olmscheid (GitHub: Olmscheid, Email: Mark.Olmscheid@colorado.edu)  
+• Sarah Suliman (GitHub: sssuliman, Email: Sarah.Suliman@colorado.edu)  
 
 ------------------------------------------------------------
 
@@ -349,30 +361,30 @@ https://github.com/kflick3r/Talent_Trail
 
 ------------------------------------------------------------
 
-                 [ Return to Homepage ]
+                   [ Return to Homepage ]
 
 ------------------------------------------------------------
-About | Contact | GitHub
+                  About | Contact | GitHub
+                  
 ------------------------------------------------------------
-```
 
-## Parameters Needed for the Page
+### Parameters Needed for the Page
 - Route params: none
 - Query params: none
 
-## Data Needed to Render the Page
+### Data Needed to Render the Page
 - Team member names
 - Team member GitHub usernames
 - Team member email addresses
 - GitHub repository URL
 
-## Link Destinations for the Page
+### Link Destinations for the Page
 - **Return to Homepage** → `/`
 - **About** → `/`
 - **Contact** → `/contact`
 - **GitHub** → external repository link
 
-## Tests for Verifying Rendering of the Page
+### Tests for Verifying Rendering of the Page
 1. **Contact content renders**
    - Team member list displays
    - Repository link displays
@@ -380,5 +392,6 @@ About | Contact | GitHub
    - Return to Homepage button navigates correctly
 3. **Footer links**
    - About, Contact, and GitHub links render correctly
+   - GitHub link opens in a new tab
 
 
