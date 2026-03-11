@@ -20,27 +20,36 @@ app = Flask(__name__)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(BASE_DIR, "Data", "onet.db")
 
+
+
 def get_careers():
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
-    c.execute("SELECT onetsoc_code, title FROM occupation_data ORDER BY title ASC")
+    c.execute("""
+        SELECT DISTINCT o.onetsoc_code, o.title 
+        FROM occupation_data o
+        LEFT JOIN skills s ON o.onetsoc_code = s.onetsoc_code
+        GROUP BY o.onetsoc_code
+        ORDER BY o.title ASC
+    """)
     careers = c.fetchall()
 
     conn.close()
     return careers
 
 def get_skills(onetsoc_code):
+    if not onetsoc_code:
+        return []
+        
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
     query = """
         SELECT cmr.element_name, s.data_value
         FROM skills s
-        JOIN content_model_reference cmr
-        ON s.element_id = cmr.element_id
+        JOIN content_model_reference cmr ON s.element_id = cmr.element_id
         WHERE s.onetsoc_code = ?
-        AND s.scale_id = 'IM'
         ORDER BY s.data_value DESC
         LIMIT 10
     """
@@ -49,8 +58,10 @@ def get_skills(onetsoc_code):
     skills = c.fetchall()
 
     conn.close()
-
     return skills
+
+print("Database path:", DB_PATH)
+print("Careers:", get_careers()[:5])
 
 #---
 
@@ -63,8 +74,16 @@ def career_selection():
 @app.route("/survey", methods=["GET","POST"])
 def survey():
     onetsoc_code = request.values.get("career")
+    print("Received career code:", onetsoc_code)
+
+    if not onetsoc_code:
+        return "Error: No career selected", 400
+
     skills = get_skills(onetsoc_code)
 
+    if not skills:
+        return f"No skills found for {onetsoc_code}. Please select another career.", 200
+        
     return render_template("career_survey.html", skills=skills)
 
 #---
