@@ -46,11 +46,12 @@ def get_skills(onetsoc_code):
     c = conn.cursor()
 
     query = """
-        SELECT cmr.element_name, s.data_value
+        SELECT cmr.element_name, MAX(data_value) as data_value, cmr.description
         FROM skills s
         JOIN content_model_reference cmr ON s.element_id = cmr.element_id
         WHERE s.onetsoc_code = ?
-        ORDER BY s.data_value DESC
+        GROUP BY element_name
+        ORDER BY data_value DESC
         LIMIT 10
     """
 
@@ -63,6 +64,20 @@ def get_skills(onetsoc_code):
 print("Database path:", DB_PATH)
 print("Careers:", get_careers()[:5])
 
+
+def get_career_name(onetsoc_code):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT title FROM occupation_data WHERE onetsoc_code = ?", (onetsoc_code,))
+    row = cursor.fetchone()
+    
+    conn.close()
+    
+    if row:
+        return row[0]  # career name/title
+    else:
+        return "Unknown Career"
 #---
 
 @app.route("/")
@@ -83,8 +98,10 @@ def survey():
 
     if not skills:
         return f"No skills found for {onetsoc_code}. Please select another career.", 200
-        
-    return render_template("career_survey.html", skills=skills)
+
+    career_name = get_career_name(onetsoc_code)
+    
+    return render_template("career_survey.html", skills=skills, career_name=career_name)
 
 #---
 
