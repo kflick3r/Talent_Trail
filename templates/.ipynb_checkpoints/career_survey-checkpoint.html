@@ -6,12 +6,13 @@
     <body>
         <h1>Top 10 Skills</h1>
         <h2>Self-Survey for {{ career_name }}</h2>
-        <form method="post" action="/submit_survey">
+        <form method="post" action="/careers/survey/results">
+            <input type="hidden" name="career_code" value="{{ onetsoc_code }}">
             <ul>
                 {% for skill, value, description in skills %}
                 <li>
                     <span class="skill-name">{{ skill }}</span><div></div>
-                    <span class="skill-desription">Description: {{ description }}</span>
+                    <span class="skill-description">Description: {{ description }}</span>
                     <div class="rating">
                         {% for i in range(0, 8) %}
                             <label>

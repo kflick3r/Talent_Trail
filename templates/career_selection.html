@@ -7,7 +7,8 @@
     <body>
         <h1>Select a Career to Explore:</h1>
 
-        <form method="get" action="survey">
+        <form action="/careers/survey" method="post">
+            <label for="career">Select a Career:</label>
             <select name="career" required>
                 <option value="" disabled selected>Select a Career...</option>
                 {% for code, title in careers %}
