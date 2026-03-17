@@ -13,6 +13,7 @@ Usage:
     
     Requirements:
         - Virtual environment activated OR Flask installed locally
+            - from project root run (source venv/bin/activate)
         - Database file located at: Data/onet.db
 
 Author: Kassidy Flick
@@ -132,6 +133,14 @@ print("Sample careers:", get_careers()[:5])
 
 
 # ----------------------------------------------
+# Jupyter Hub proxy-safe URLs
+# ----------------------------------------------
+
+@app.context_processor
+def implement_script_root():
+    return dict(script_root=request.script_root)
+
+# ----------------------------------------------
 # ROUTES
 # ----------------------------------------------
 
@@ -178,7 +187,7 @@ def survey():
 
     career_name = get_career_name(onetsoc_code)
     
-    return render_template("career_survey.html", skills=skills, career_name=career_name)
+    return render_template("career_survey.html", skills=skills, career_name=career_name, onetsoc_code=onetsoc_code)
 
 @app.route("/careers/survey/results", methods=["POST"])
 def results():

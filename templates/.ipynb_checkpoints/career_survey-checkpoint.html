@@ -6,17 +6,18 @@
     <body>
         <h1>Top 10 Skills</h1>
         <h2>Self-Survey for {{ career_name }}</h2>
-        <form method="post" action="/careers/survey/results">
+        <form method="post" action="survey/results">
             <input type="hidden" name="career_code" value="{{ onetsoc_code }}">
             <ul>
                 {% for skill, value, description in skills %}
+                    {% set skill_idx = loop.index0 %}
                 <li>
                     <span class="skill-name">{{ skill }}</span><div></div>
                     <span class="skill-description">Description: {{ description }}</span>
                     <div class="rating">
                         {% for i in range(0, 8) %}
                             <label>
-                                <input type="radio" name="rating_{{ loop.index0 }}" value="{{ i }}" required> {{ i }}
+                                <input type="radio" name="rating_{{ skill_idx }}" value="{{ i }}" required> {{ i }}
                             </label>
                         {% endfor %}
                     </div>
