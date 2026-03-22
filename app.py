@@ -150,6 +150,13 @@ def landing_page():
     Renders the landing page.
     '''
     return render_template("landing_page.html")
+
+@app.route("/about")
+def about_page():
+    '''
+    Renders the about page.
+    '''
+    return render_template("about.html")
     
 @app.route("/careers")
 def career_selection():
