@@ -266,6 +266,68 @@ Overall the team has had great progress and communication this week, however, th
 - **Sarah:** : Designed initial front-end layout ideas and discussed ideas on how to structure the website based on the MVP deliverables.
 ---
 
+## Reporting Period
+**Week:** 9  
+**Meeting Held:** Yes  
+**Meeting Date:** 3/22/2026  
+**Meeting Duration:** 30 minutes  
+**Meeting Format:** Zoom  
+
+---
+
+## Progress Since Last Week
+
+This week, the team continued building the MVP by improving documentation, frontend structure, and planning for backend connectivity.
+
+Major progress this week included:
+
+- Created and uploaded an entity relationship diagram to the project documents  
+- Added documentation for database structure, including a table for scale reference  
+- Got the survey page to load  
+- Created the HTML for the results page  
+- Continued shared frontend and CSS work and updated the landing page to better match the mockup  
+- Continued planning backend work for comparing user inputs to the career database  
+
+---
+
+## Planned Tasks for Next Week
+
+- Work on Flask connectivity for the HTML pages  
+- Determine how the application will connect to the database and present output to the user  
+- Continue working on the backend algorithm for comparing user inputs to the career database  
+- Add the About page
+- Write tests for the current pages and routes  
+- Continue updating and refining the frontend  
+
+---
+
+## Blockers and Issues
+
+Current blockers and issues include:
+
+- CSS pathing is currently hardcoded  
+- The team still needs to determine a standardized path for how to run the app  
+- Progress on backend algorithm work over the last couple of weeks was slowed by wedding and work commitments  
+
+---
+
+## Individual Contributions This Week
+
+- **Lisa:** Reviewed how the data connects across the project, created and uploaded the entity relationship diagram, added documentation, and added the scale reference table.  
+- **Kassidy:** Worked on getting pages to appear, got the survey page to load, and created the HTML for the results page.  
+- **Sarah:** Started creating the shared frontend and CSS, continued designing the page, and updated the landing page to match the mockup more closely.  
+- **Mark:** Continued planning backend work for the algorithm that compares user inputs to the career database.  
+
+---
+
+## Individual Plans for Next Week
+
+- **Lisa:** Work on Flask connectivity for HTML and determine how the app will connect to the database and present output.  
+- **Kassidy:** Add the About page and write tests.  
+- **Sarah:** Continue updating and refining the frontend.  
+- **Mark:** Continue working on the backend algorithm for comparing user inputs to the career database.  
+```
+
 ## Notes
 This file will be updated weekly as the project progresses.  
 Earlier weekly entries may be retained below or moved to an archive directory if the file grows large.
