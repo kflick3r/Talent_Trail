@@ -185,8 +185,9 @@ Stores weekly availability time blocks per user and group.
 | Primary Key (element_id, scale_id, category) | one combination of three variables | unique |
 
 ### Relationships
-
-
+- Many-to-one with content_model_reference
+- Many-to-one with scales_reference
+- One-to-many with education_training_experience
 
 ### Table Tests
 
@@ -254,16 +255,16 @@ Suggested education, training and experience requires for career.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| id | Availability record | Primary key |
-| user_id | Owner user | Foreign key |
-| group_id | Associated group | Foreign key |
-| day_of_week | Day label | NOT NULL |
-| start_time | Start time | NOT NULL |
-| end_time | End time | NOT NULL |
+| scale_id  |  | PRIMARY KEY, NOT NULL |
+| scale_name |  | CHARACTER VARYING(50) NOT NULL |
+| minimum |  | DECIMAL(1,0) NOT NULL |
+| maximum |  | DECIMAL(3,0) NOT NULL |
 
 ### Relationships
-- Many-to-one with users
-- Many-to-one with groups
+- One-to-many with skills
+- One-to-many with ete_categories
+- One-to-many with education_training_experience
+
 
 ### Table Tests
 
@@ -282,6 +283,8 @@ Suggested education, training and experience requires for career.
 Each table has at least one access method.
 
 ---
+
+///BELOW NEEDS UPDATING/////
 
 ## Access Method: get_user_by_email
 
