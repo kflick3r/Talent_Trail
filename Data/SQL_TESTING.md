@@ -36,7 +36,7 @@ Each table is described below.
 
 ---
 
-## 1) Table: occupation_data
+## 1) Table: `occupation_data`
 
 ### Table Description
 Represents the available occupation/career options. Stores core occupation information from O*NET.
@@ -54,21 +54,20 @@ Represents the available occupation/career options. Stores core occupation infor
 
 ### Table Tests
 
-**Use Case Name:** Double Code INSERT (Prevent duplicate occupation)
-**Description:** Attempt to insert a duplicate onetsoc_code into the database
-**Pre-conditions:** Database running  
+**Use Case Name:** Double Code INSERT (Prevent duplicate occupation)  
+**Description:** Attempt to insert a duplicate onetsoc_code into the database  
+**Pre-conditions:** Database running    
 
 **Test Steps:**
 1. Insert valid onetsoc_code
 2. Insert valid onetsoc_code into database with different description
 
-**Expected Result:** Second insert test fails
-**Actual Result:** 
-**Status:** 
+
+**Expected Result:** Second insert test fails  
 
 ---
 
-## 2) Table: skills
+## 2) Table: `skills`
 
 ### Table Description
 Represents the skills that are necessary for each oppucation in occupation_data.
@@ -76,11 +75,10 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| onetsoc_code | Unique group identifier | NOT NULL, FK → occupation_data |
-| element_id | Group display name | NOT NULL, FK → content_model_reference  |
-| scale_id | Scale reference | NOT NULL, FK → scales_reference |
-| data_value  | Creation timestamp | NOT NULL |
-| n | sample size | NULLABLE |
+| onetsoc_code | Unique group identifier | NOT NULL, FK → `occupation_data` (`onetsoc_code`) |
+| element_id | Group display name | NOT NULL, FK → `content_model_reference` (`element_id`) |
+| scale_id | Scale reference | NOT NULL, FK → `scales_reference` (`scale_id`) |
+| data_value  | Creation timestamp | NOT NULL || n | sample size | NULLABLE |
 | standard_error | Standard error | NULLABLE |
 | lower_ci_bound | Lower 95% CI | NULLABLE |
 | upper_ci_bound | Upper 95% CI | NULLABLE |
@@ -95,22 +93,20 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 - Many-to-one with `content_model_references`
 - Many-to-one with `scales_reference`
 
-### Table Tests
+### Table Tests  
 
-**Use Case Name:**  Element_id retrieval
-**Description:** Verify that the element_id is NOT NULL
-**Pre-conditions:** Database running 
+**Use Case Name:**  `element_id` retrieval  
+**Description:** Verify that the `element_id` is NOT NULL  
+**Pre-conditions:** Database running   
 
-**Test Steps:**
-1. Insert into skills with NULL attributes
+**Test Steps:**  
+1. Insert into skills with NULL attributes  
 
-**Expected Result:** Test should fail
-**Actual Result:**   
-**Status:** 
+**Expected Result:** Test should fail  
 
 ---
 
-## 3) Table: user_responses
+## 3) Table: `user_responses`
 
 ### Table Description
 Stores user-selected values for career and skill survey responses and a unique response_id to connect through the tables.
@@ -132,19 +128,17 @@ Stores user-selected values for career and skill survey responses and a unique r
 
 ### Table Tests
 
-**Use Case Name:** Insert valid user response  
-**Description:** Verify a response can be stored  
+**Use Case Name:** Insert valid user response    
+**Description:** Verify a response can be stored    
 
 **Test Steps:**
-1. Insert response with valid foreign key  
+1. Insert response with valid foreign key   
 
 **Expected Result:** Insert succeeds  
-**Actual Result:**  
-**Status:** Pass  
 
 ---
 
-## 4) Table: content_model_reference
+## 4) Table: `content_model_reference`
 
 ### Table Description
 Defines content model elements such as skills and abilities. Tracks elements such as cognitive abilities, worker characteristics, oral comprehension, etc. 
@@ -164,19 +158,19 @@ Defines content model elements such as skills and abilities. Tracks elements suc
 
 ### Table Tests
 
-**Use Case Name:** element_id 
-**Description:** Verify element_id persistence  
+**Use Case Name:** `element_id`   
+**Description:** Verify `element_id` persistence   
 
 **Test Steps:**
-1. Insert element_id 
-2. Query by element_id  
+1. Insert `element_id` 
+2. Query by `element_id`  
+
 
 **Expected Result:** Element id
-**Status:** Pass  
 
 ---
 
-## 5) Table: ete_categories 
+## 5) Table: `ete_categories`  
 
 ### Table Description
 Provide descriptions of the Education, Training, and Experience percent frequency categories.
@@ -184,13 +178,11 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| element_id | Content Model Outline Position | NOT NULL |
-| scale_id | Id from Scale table| NOT NULL |
-| FOREIGN KEY (element_id) |  | Foreign Key -> content_model_reference(element_id)|
-| FOREIGN KEY (scale_id) |  | Foreign Key -> scales_reference(scale_id) |
-| category | Category value associated with element | Foreign key |
+| element_id | Content Model Outline Position | NOT NULL, FK → `content_model_reference` (`element_id`) |
+| scale_id | Scale Identifier | NOT NULL, FK → `scales_reference` (`scale_id`) |
+| category | Category value associated with element | NOT NULL |
 | category_description | category description of element | NOT NULL |
-| Primary Key (element_id, scale_id, category) | one combination of three variables | unique |
+| Primary Key (element_id, scale_id, category) | Composite Key | UNIQUE |
 
 ### Relationships
 - Many-to-one with content_model_reference
@@ -199,17 +191,17 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 
 ### Table Tests
 
-**Use Case Name:** Composite key uniqueness   
+**Use Case Name:** Composite key uniqueness    
 
 **Test Steps:**
 1. Insert valid category row  
 2. Insert duplicate (same element_id, scale_id, category)  
 
-**Expected Result:** Second insert fails  
+**Expected Result:** Second insert fails   
 
 ---
 
-## 6) Table: education_training_experience
+## 6) Table: `education_training_experience`  
 
 ### Table Description
 Stores education, training and experience data for career.
@@ -217,10 +209,10 @@ Stores education, training and experience data for career.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| onetsoc_code | Occupation reference | NOT NULL, FK → occupation_data (onetsoc_code) |
-| element_id | content model element | NOT NULL, FK → content_model_reference (element_id) |
-| scale_id | scale reference id | NOT NULL, FK → scales_reference (scale_id) |
-| category | ETE category | NULLABLE, FK → ete_category (category) |
+| onetsoc_code | Occupation reference | NOT NULL, FK → `occupation_data` (`onetsoc_code`) |
+| element_id | content model element | NOT NULL, FK → `content_model_reference` (`element_id`) |
+| scale_id | scale reference id | NOT NULL, FK → `scales_reference` (`scale_id`) |
+| category | ETE category | NULLABLE, FK → `ete_category` (`category`) |
 | data_value  | Rating associated with the O*NET-SOC occupation | NOT NULL |
 | n | sample size | NOT NULL |
 | standard_error | Standard error | NULLABLE |
@@ -246,13 +238,13 @@ Stores education, training and experience data for career.
 1. Insert valid row with existing `element_id`, `scale_id`, `category`, and `onetsoc_code`  
 2. Query the row by occupation and element  
 
-**Expected Result:** Row is stored and returned successfully  
+**Expected Result:** Row is stored and returned successfully   
 
-**Post-conditions:** Database remains consistent
+**Post-conditions:** Database remains consistent  
 
 ---
 
-## 7) Table: scales_reference
+## 7) Table: `scales_reference`  
 
 ### Table Description
 Suggested education, training and experience requires for career.
@@ -260,15 +252,15 @@ Suggested education, training and experience requires for career.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| scale_id  |  | PRIMARY KEY, NOT NULL |
-| scale_name |  | CHARACTER VARYING(50) NOT NULL |
-| minimum |  | DECIMAL(1,0) NOT NULL |
-| maximum |  | DECIMAL(3,0) NOT NULL |
+| scale_id  | Unique scale id | PRIMARY KEY, NOT NULL |
+| scale_name | Scale name | NOT NULL |
+| minimum | Minimum Vvalue | NOT NULL |
+| maximum | Maximum value | NOT NULL |
 
 ### Relationships
-- One-to-many with skills
-- One-to-many with ete_categories
-- One-to-many with education_training_experience
+- One-to-many with `skills`  
+- One-to-many with `ete_categories`  
+- One-to-many with `education_training_experience`  
 
 
 ### Table Tests
@@ -276,9 +268,9 @@ Suggested education, training and experience requires for career.
 **Use Case Name:** Insert Scale  
 
 **Test Steps:**
-1. Insert Valid scale
+1. Insert Valid scale  
 
-**Expected Result:** Insert succeeds  
+**Expected Result:** Insert succeeds   
 
 ---
 
@@ -288,7 +280,7 @@ Each table has at least one access method.
 
 ---
 
-## Access Method: get_careers
+## Access Method: `get_careers`
 
 ### Description
 Retrieves all occupations that have at least one associated skill.
@@ -305,17 +297,17 @@ Retrieves all occupations that have at least one associated skill.
 
 ### Tests
 
-**Use Case Name:** Retrieve career list
+**Use Case Name:** Retrieve career list  
 
 **Test Steps:**
 1. Call `get_careers()`
 
-**Expected Result:** Returns list of careers sorted alphabetically  
+**Expected Result:** Returns list of careers sorted alphabetically    
 **Post-conditions:** None  
 
 ---
 
-## Access Method: get_skills
+## Access Method: `get_skills`
 
 ### Description
 Retrieves the top 10 most important skills for a selected occupation.
@@ -332,17 +324,17 @@ Retrieves the top 10 most important skills for a selected occupation.
 
 ### Tests
 
-**Use Case Name:** Valid occupation skills  
+**Use Case Name:** Valid occupation skills   
 
 **Test Steps:**
 1. Call with valid `onetsoc_code()`
 
-**Expected Result:** Returns up to 10 skills sorted by importance  
-**Post-conditions:** None  
+**Expected Result:** Returns up to 10 skills sorted by importance    
+**Post-conditions:** None    
 
 ---
 
-## Access Method: get_career_name
+## Access Method: `get_career_name`
 
 ### Description
 Retrieves the title of a career from its O*NET code.
@@ -358,17 +350,17 @@ Retrieves the title of a career from its O*NET code.
 
 ### Tests
 
-**Use Case Name:** Valid career lookup  
+**Use Case Name:** Valid career lookup   
 
 **Test Steps:**
 1. Call with valid `onetsoc_code()`
 
-**Expected Result:** Returns correct career title  
-**Post-conditions:** None  
+**Expected Result:** Returns correct career title   
+**Post-conditions:** None   
 
 ---
 
-## Access Method: get_skill_levels_and_importance
+## Access Method: `get_skill_levels_and_importance`
 
 ### Description
 Retrieves O*NET Level (LV) and Importance (IM) values for selected career. 
@@ -389,13 +381,13 @@ Retrieves O*NET Level (LV) and Importance (IM) values for selected career.
 
 ### Tests
 
-**Use Case Name:** Valid skill comparison data  
+**Use Case Name:** Valid skill comparison data   
 
 **Test Steps:**
-1. Provide valid occupation and skill list
+1. Provide valid occupation and skill list  
 
-**Expected Result:** Returns level and importance value  
-**Post-conditions:** None  
+**Expected Result:** Returns level and importance value   
+**Post-conditions:** None   
 
 ---
 
@@ -413,35 +405,37 @@ Retrieves O*NET Level (LV) and Importance (IM) values for selected career.
 
 # Page Data Access Tests
 
-**Use Case Name:** Load career selection page
+**Use Case Name:** Load career selection page  
 
-**Test Steps:**
-- Navigate to /careers
+**Test Steps:**  
+- Navigate to `/careers`
 - Load dropdown
 
 **Expected Result:** 
-List of careers is displayed
+List of careers is displayed  
 
 ---
 
-**Use Case Name:** Load survey page
+**Use Case Name:** Load survey page  
 
 **Test Steps:**
 - Select career
 - Submit selection
+- Navigate to `/careers/survey`
+- Load survey page
 
 **Expected Result:**
-Top 10 skills displayed
+Top 10 skills displayed  
 
 ---
 
-**Use Case Name:** Invalid career selection
+**Use Case Name:** Invalid career selection  
 
 **Test Steps:**
 - Submit empty or invalid career
 
 **Expected Result:**
-Error message displayed
+Error message displayed  
 
 ---
 
