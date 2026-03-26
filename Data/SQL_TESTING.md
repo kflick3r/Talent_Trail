@@ -27,9 +27,10 @@ At minimum, the system requires the following tables:
 - `occupation_data`
 - `skills`
 - `user_responses`
-- `content_model`
+- `content_model_reference`
 - `education_training_experience`
-- 'ete_categories'
+- `ete_categories`
+- `scales_reference`
 
 Each table is described below.
 
@@ -38,14 +39,14 @@ Each table is described below.
 ## 1) Table: occupation_data
 
 ### Table Description
-Represents the available occupation/career options.
+Represents the available occupation/career options. Stores core occupation information from O*NET.
 
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| onetsoc_code | O*NET-SOC Code | PRIMARY KEY, NOT NULL |
-| title | O*NET-SOC Title | NOT NULL |
-| Description | O*NET-SOC Description | Nullable |
+| onetsoc_code | Unique O*NET-SOC Code | PRIMARY KEY, NOT NULL |
+| title | O*NET-SOC (Occupation) Title | NOT NULL |
+| description | O*NET-SOC (Occupation) Description | Nullable |
 
 ### Relationships
 - One-to-many with 'skills'
@@ -53,13 +54,15 @@ Represents the available occupation/career options.
 
 ### Table Tests
 
-**Use Case Name:** Double Code INSERT
+**Use Case Name:** Double Code INSERT (Prevent duplicate occupation)
 **Description:** Attempt to insert a duplicate onetsoc_code into the database
 **Pre-conditions:** Database running  
+
 **Test Steps:**
 1. Insert valid onetsoc_code
 2. Insert valid onetsoc_code into database with different description
-**Expected Result:** Test fails
+
+**Expected Result:** Second insert test fails
 **Actual Result:** 
 **Status:** 
 **Post-conditions:** 
@@ -76,7 +79,10 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 |----------|------------|-------------|
 | onetsoc_code | Unique group identifier | Primary key |
 | element_id | Group display name | NOT NULL |
-| scale_id | | Foreign key → users.id |
+| scale_id | Scale reference | Foreign key → users.id |
+| FOREIGN KEY (onetsoc_code) | Connection to table | Foreign key -> occupation_data(onetsoc_code) |
+| FOREIGN KEY (element_id) | Connection to table | Foreign Key -> content_model_reference(element_id) |
+| FOREIGN KEY (scale_id) | Connection to table | Foreign Key -> scales_reference(scale_id))
 | data_value  | Creation timestamp | NOT NULL |
 | n | sample size | NOT NULL |
 | standard_error | Standard error | Nullable |
@@ -86,14 +92,11 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 | not_relevant | Not relevant for the occupation | Char (Y=yes, N=no) |
 | date_updated | date when data was updated | NOT NULL |
 | domain_source | source of data | Nullable |
-| FOREIGN KEY (onetsoc_code) | Connection to table | Foreign key -> occupation_data(onetsoc_code) |
-| FOREIGN KEY (element_id) | Connection to table | Foreign Key -> content_model_reference(element_id) |
-| FOREIGN KEY (scale_id) | Connection to table | Foreign Key -> scales_reference(scale_id)) |
 
 
 ### Relationships
 - Many-to-one with `occupation`
-- Many-to-many with `content_model_references`
+- Many-to-one with `content_model_references`
 - Many-to-one with `skills`
 
 ### Table Tests
@@ -101,37 +104,46 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 **Use Case Name:**  Element_id retrieval
 **Description:** Verify that the element_id is NOT NULL
 **Pre-conditions:** Database running 
+
 **Test Steps:**
 1. Insert into skills with NULL attributes
+
 **Expected Result:** Test should fail
 **Actual Result:**   
 **Status:** 
 
 ---
 
-## 3) Table: user_responses (NEEDS UPDATING)
+## 3) Table: user_responses
 
 ### Table Description
-Stores user career and skill survey responses and a response_id to connect through the tables.
+Stores user-selected values for career and skill survey responses and a unique response_id to connect through the tables.
 
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| user_id | Member user | Foreign key → users.id |
-| group_id | Group joined | Foreign key → groups.id |
-| role | Member role (member/admin) | Default 'member' |
+| response_id | Unique response identifier | Primary Key, Autoincrement |
+| onetsoc_code | Associated selected occupation | NOT NULL, FK → occupation_data |
+| element_id | Content Model Element | NOT NULL, FK → content_model_reference |
+| scale_id | Scale reference | NULLABLE, FK → scale_reference |
+| user_value | Value selected by user | NULLABLE |
+| created_at | Timestamp of respone | NULLABLE |
 
 ### Relationships
-- Composite primary key (`user_id`, `group_id`)
-- Links users and groups
+- Many-to-one with `occupation_data`
+- Many-to-one with `content_model_reference`
+- Many-to-one with `scales_reference`
 
 ### Table Tests
 
-**Use Case Name:** Add user to group  
-**Description:** Verify membership creation  
+**Use Case Name:** Insert valid user response  
+**Description:** Verify a response can be stored  
+
 **Test Steps:**
-1. Insert (user_id, group_id)  
-**Expected Result:** Membership exists  
+1. Insert response with valid foreign key  
+
+**Expected Result:** Insert succeeds  
+**Actual Result:**  
 **Status:** Pass  
 
 ---
@@ -139,28 +151,30 @@ Stores user career and skill survey responses and a response_id to connect throu
 ## 4) Table: content_model_reference (NEEDS Test Review)
 
 ### Table Description
-Tracks elements such as cognitive abilities, worker characteristics, oral comprehension, etc. 
+Defines content model elements such as skills and abilities. Tracks elements such as cognitive abilities, worker characteristics, oral comprehension, etc. 
 
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
 | element_id | Task identifier | PRIMARY KEY |
 | element_name | Content Model Element Name| NOT NULL |
-| description | Content Model Element Description | NOT NULL |
+| description | Content Model Element Description | NULLABLE |
 
 ### Relationships
-- Many-to-one with `education_training_experience`
-- Many-to-one with `skills`
-- Many-to-one with `ete_categories`
+- One-to-many with `education_training_experience`
+- One-to-many with `skills`
+- One-to-many with `ete_categories`
 
 
 ### Table Tests
 
 **Use Case Name:** element_id 
 **Description:** Verify element_id persistence  
+
 **Test Steps:**
 1. Insert element_id 
 2. Query by element_id  
+
 **Expected Result:** Element 
 **Status:** Pass  
 
@@ -176,10 +190,10 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 |----------|------------|-------------|
 | element_id | Content Model Outline Position | NOT NULL |
 | scale_id | Id from Scale table| NOT NULL |
-| category | Category value associated with element | Foreign key |
-| category_description | category description of element | NOT NULL |
 | FOREIGN KEY (element_id) |  | Foreign Key -> content_model_reference(element_id)|
 | FOREIGN KEY (scale_id) |  | Foreign Key -> scales_reference(scale_id) |
+| category | Category value associated with element | Foreign key |
+| category_description | category description of element | NOT NULL |
 | Primary Key (element_id, scale_id, category) | one combination of three variables | unique |
 
 ### Relationships
@@ -191,9 +205,11 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 
 **Use Case Name:** Store availability  
 **Description:** Verify availability persistence  
+
 **Test Steps:**
 1. Insert availability row  
 2. Query by user_id  
+
 **Expected Result:** Row returned  
 **Status:** Pass  
 
@@ -202,7 +218,7 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 ## 6) Table: education_training_experience
 
 ### Table Description
-Suggested education, training and experience requires for career.
+Stores education, training and experience data for career.
 
 ### Fields
 | Field Name | Description | Constraints |
@@ -210,7 +226,7 @@ Suggested education, training and experience requires for career.
 | onetsoc_code | Unique group identifier | Primary key |
 | element_id | content model outline position | NOT NULL |
 | scale_id | scale id | NOT NULL |
-| category | percent frequency category ] NOT NULL |
+| category | percent frequency category | NOT NULL |
 | data_value  | Rating associated with the O*NET-SOC occupation | NOT NULL |
 | n | sample size | NOT NULL |
 | standard_error | Standard error | Nullable |
@@ -237,9 +253,11 @@ Suggested education, training and experience requires for career.
 
 **Use Case Name:** Store availability  
 **Description:** Verify availability persistence  
+
 **Test Steps:**
 1. Insert availability row  
 2. Query by user_id  
+
 **Expected Result:** Row returned  
 **Status:** Pass
 
@@ -282,26 +300,29 @@ Each table has at least one access method.
 
 ---
 
-///BELOW NEEDS UPDATING/////
-
-## Access Method: get_user_by_email
+## Access Method: get_careers
 
 ### Description
-Fetches a user by email for authentication.
+Retrieves all occupations that have at least one associated skill.
 
 ### Parameters
-- email (string)
+- none
 
 ### Return Values
-- User record or null
+- List of tuples: `(onetsoc_code, title)`
+
+### Tables Accessed
+- `occupation_data`
+- `skills`
 
 ### Tests
 
-**Use Case Name:** Verify valid login  
-**Pre-conditions:** User exists  
+**Use Case Name:** Retrieve career list
+
 **Test Steps:**
-1. Call method with known email  
-**Expected Result:** User object returned  
+1. Call `get_careers()`
+
+**Expected Result:** Returns list of careers sorted alphabetically  
 **Post-conditions:** None  
 
 ---
@@ -361,11 +382,10 @@ Computes overlapping availability for a group.
 
 | Page | Tables Accessed |
 |----|----------------|
-| Login | users |
-| Dashboard | users, groups, tasks |
-| Group Page | groups, group_members, tasks, availability |
-| Availability Page | availability |
-| Task Page | tasks, users |
+| Landing Page | N/A |
+| Career Selection Page | occupation_data, skills, education_training_experience |
+| Survey Page | content_model_reference, user_responses |
+| Results Page | user_responses, occupation_data |
 
 ---
 

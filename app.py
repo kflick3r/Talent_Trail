@@ -15,8 +15,6 @@ Usage:
         - Virtual environment activated OR Flask installed locally
             - from project root run (source venv/bin/activate)
         - Database file located at: Data/onet.db
-
-Author: Kassidy Flick
 '''
 
 from flask import Flask, render_template, request
