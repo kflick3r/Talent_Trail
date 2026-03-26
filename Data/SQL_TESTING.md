@@ -46,11 +46,11 @@ Represents the available occupation/career options. Stores core occupation infor
 |----------|------------|-------------|
 | onetsoc_code | Unique O*NET-SOC Code | PRIMARY KEY, NOT NULL |
 | title | O*NET-SOC (Occupation) Title | NOT NULL |
-| description | O*NET-SOC (Occupation) Description | Nullable |
+| description | O*NET-SOC (Occupation) Description | NOT NULL |
 
 ### Relationships
-- One-to-many with 'skills'
-- One-to-many with 'education_talents_experience'
+- One-to-many with `skills`
+- One-to-many with `education_training_experience`
 
 ### Table Tests
 
@@ -77,27 +77,24 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| onetsoc_code | Unique group identifier | Primary key |
-| element_id | Group display name | NOT NULL |
-| scale_id | Scale reference | Foreign key → users.id |
-| FOREIGN KEY (onetsoc_code) | Connection to table | Foreign key -> occupation_data(onetsoc_code) |
-| FOREIGN KEY (element_id) | Connection to table | Foreign Key -> content_model_reference(element_id) |
-| FOREIGN KEY (scale_id) | Connection to table | Foreign Key -> scales_reference(scale_id))
+| onetsoc_code | Unique group identifier | NOT NULL, FK → occupation_data |
+| element_id | Group display name | NOT NULL, FK → content_model_reference  |
+| scale_id | Scale reference | NOT NULL, FK → scales_reference |
 | data_value  | Creation timestamp | NOT NULL |
-| n | sample size | NOT NULL |
-| standard_error | Standard error | Nullable |
-| lower_ci_bound | Lower 95% CI | Nullable |
-| upper_ci_bound | Upper 95% CI | Nullable |
-| recommend_suppress | Low precision indicator | Char (Y=yes, N=no) |
-| not_relevant | Not relevant for the occupation | Char (Y=yes, N=no) |
+| n | sample size | NULLABLE |
+| standard_error | Standard error | NULLABLE |
+| lower_ci_bound | Lower 95% CI | NULLABLE |
+| upper_ci_bound | Upper 95% CI | NULLABLE |
+| recommend_suppress | Low precision indicator (Y/N) | NULLABLE |
+| not_relevant | Relevance flag (Y/N) | NULLABLE |
 | date_updated | date when data was updated | NOT NULL |
-| domain_source | source of data | Nullable |
+| domain_source | source of data | NOT NULL |
 
 
 ### Relationships
-- Many-to-one with `occupation`
+- Many-to-one with `occupation_data`
 - Many-to-one with `content_model_references`
-- Many-to-one with `skills`
+- Many-to-one with `scales_reference`
 
 ### Table Tests
 
@@ -180,7 +177,7 @@ Defines content model elements such as skills and abilities. Tracks elements suc
 
 ---
 
-## 5) Table: ete_categories (TESTS)
+## 5) Table: ete_categories 
 
 ### Table Description
 Provide descriptions of the Education, Training, and Experience percent frequency categories.
@@ -203,15 +200,13 @@ Provide descriptions of the Education, Training, and Experience percent frequenc
 
 ### Table Tests
 
-**Use Case Name:** Store availability  
-**Description:** Verify availability persistence  
+**Use Case Name:** Composite key uniqueness   
 
 **Test Steps:**
-1. Insert availability row  
-2. Query by user_id  
+1. Insert valid category row  
+2. Insert duplicate (same element_id, scale_id, category)  
 
-**Expected Result:** Row returned  
-**Status:** Pass  
+**Expected Result:** Second insert fails  
 
 ---
 
@@ -223,43 +218,38 @@ Stores education, training and experience data for career.
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
-| onetsoc_code | Unique group identifier | Primary key |
-| element_id | content model outline position | NOT NULL |
-| scale_id | scale id | NOT NULL |
-| category | percent frequency category | NOT NULL |
+| onetsoc_code | Occupation reference | NOT NULL, FK → occupation_data (onetsoc_code) |
+| element_id | content model element | NOT NULL, FK → content_model_reference (element_id) |
+| scale_id | scale reference id | NOT NULL, FK → scales_reference (scale_id) |
+| category | ETE category | NULLABLE, FK → ete_category (category) |
 | data_value  | Rating associated with the O*NET-SOC occupation | NOT NULL |
 | n | sample size | NOT NULL |
-| standard_error | Standard error | Nullable |
-| lower_ci_bound | Lower 95% CI | Nullable |
-| upper_ci_bound | Upper 95% CI | Nullable |
+| standard_error | Standard error | NULLABLE |
+| lower_ci_bound | Lower 95% CI | NULLABLE |
+| upper_ci_bound | Upper 95% CI | NULLABLE |
 | recommend_suppress | Low precision indicator | Char (Y=yes, N=no) |
 | not_relevant | Not relevant for the occupation | Char (Y=yes, N=no) |
 | date_updated | date when data was updated | NOT NULL |
-| domain_source | source of data | Nullable |
-| FOREIGN KEY (onetsoc_code) | Connection to table | Foreign key -> occupation_data(onetsoc_code) |
-| FOREIGN KEY (element_id) | Connection to table | Foreign Key -> content_model_reference(element_id) |
-| FOREIGN KEY (scale_id) | Connection to table | Foreign Key -> scales_reference(scale_id)) |
-| FOREIGN KEY (element_id, scale_id, category) |  | Foreign Key -> ete_categories(element_id, scale_id, category)|
+| domain_source | source of data | NULLABLE |
 
 
 ### Relationships
-- Many-to-one with content_model_reference
-- Many-to-one with ete_categories
-- Many-to-one with occupation_data
-- Many-to-one with scales_reference
-- Composite primary key (`element_id`, `scale_id, category`)
+- Many-to-one with `content_model_reference`
+- Many-to-one with `ete_categories` via composite foreign key (`element_id`, `scale_id, category`)
+- Many-to-one with `occupation_data`
+- Many-to-one with `scales_reference`
 
 ### Table Tests
 
-**Use Case Name:** Store availability  
-**Description:** Verify availability persistence  
+**Use Case Name:** Verify ETE row insertion  
 
 **Test Steps:**
-1. Insert availability row  
-2. Query by user_id  
+1. Insert valid row with existing `element_id`, `scale_id`, `category`, and `onetsoc_code`  
+2. Query the row by occupation and element  
 
-**Expected Result:** Row returned  
-**Status:** Pass
+**Expected Result:** Row is stored and returned successfully  
+
+**Post-conditions:** Database remains consistent
 
 ---
 
@@ -284,13 +274,12 @@ Suggested education, training and experience requires for career.
 
 ### Table Tests
 
-**Use Case Name:** Store availability  
-**Description:** Verify availability persistence  
+**Use Case Name:** Insert Scale  
+
 **Test Steps:**
-1. Insert availability row  
-2. Query by user_id  
-**Expected Result:** Row returned  
-**Status:** Pass
+1. Insert Valid scale
+
+**Expected Result:** Insert succeeds  
 
 ---
 
@@ -327,54 +316,87 @@ Retrieves all occupations that have at least one associated skill.
 
 ---
 
-## Access Method: get_groups_for_user
+## Access Method: get_skills
 
 ### Description
-Returns all groups a user belongs to.
+Retrieves the top 10 most important skills for a selected occupation.
 
 ### Parameters
-- user_id (int)
+- `onetsoc_code` (string)  
 
 ### Return Values
-- List of group objects
+- List of tuples: `(element_name, data_value, description)`
+
+### Tables Accessed
+- `skills`
+- `content_model_reference`
 
 ### Tests
-1. User with memberships returns groups
-2. User with none returns empty list
+
+**Use Case Name:** Valid occupation skills  
+
+**Test Steps:**
+1. Call with valid `onetsoc_code()`
+
+**Expected Result:** Returns up to 10 skills sorted by importance  
+**Post-conditions:** None  
 
 ---
 
-## Access Method: get_tasks_for_group
+## Access Method: get_career_name
 
 ### Description
-Returns tasks associated with a group.
+Retrieves the title of a career from its O*NET code.
 
 ### Parameters
-- group_id (int)
+- `onetsoc_code` (string)  
 
 ### Return Values
-- List of tasks
+- String (career title) or `"Unknown Career"`
+
+### Tables Accessed
+- `occupation_data`
 
 ### Tests
-1. Tasks returned for valid group
-2. Empty list for group with no tasks
+
+**Use Case Name:** Valid career lookup  
+
+**Test Steps:**
+1. Call with valid `onetsoc_code()`
+
+**Expected Result:** Returns correct career title  
+**Post-conditions:** None  
 
 ---
 
-## Access Method: get_availability_overlap
+## Access Method: get_skill_levels_and_importance
 
 ### Description
-Computes overlapping availability for a group.
+Retrieves O*NET Level (LV) and Importance (IM) values for selected career. 
 
 ### Parameters
-- group_id (int)
+- `onetsoc_code` (string)
+- `skill_names` (list of strings)
 
 ### Return Values
-- List of overlapping time windows
+- List of dictionaries containing:
+  - `skill_name`
+  - `onet_level`
+  - `onet_importance` 
+
+### Tables Accessed
+- `skills`
+- `content_model_reference`
 
 ### Tests
-1. Overlapping windows returned for common availability
-2. Empty list when no overlap exists
+
+**Use Case Name:** Valid skill comparison data  
+
+**Test Steps:**
+1. Provide valid occupation and skill list
+
+**Expected Result:** Returns level and importance value  
+**Post-conditions:** None  
 
 ---
 
@@ -382,27 +404,51 @@ Computes overlapping availability for a group.
 
 | Page | Tables Accessed |
 |----|----------------|
-| Landing Page | N/A |
-| Career Selection Page | occupation_data, skills, education_training_experience |
-| Survey Page | content_model_reference, user_responses |
-| Results Page | user_responses, occupation_data |
+| Landing Page | None |
+| About Page | None |
+| Career Selection Page | occupation_data, skills |
+| Career Survey Page | skills, content_model_reference, occupation_data, user_responses |
+| Results Page | user_responses, skills, education_training_experience, occupation_data |
 
 ---
 
 # Page Data Access Tests
 
-**Use Case Name:** Dashboard loads user data  
-**Description:** Verify dashboard queries correct tables  
-**Pre-conditions:** User logged in  
+**Use Case Name:** Load career selection page
+
 **Test Steps:**
-1. Load dashboard
-2. Fetch groups and tasks  
-**Expected Result:** Correct data displayed  
-**Post-conditions:** None  
+- Navigate to /careers
+- Load dropdown
+
+**Expected Result:** 
+List of careers is displayed
+
+---
+
+**Use Case Name:** Load survey page
+
+**Test Steps:**
+- Select career
+- Submit selection
+
+**Expected Result:**
+Top 10 skills displayed
+
+---
+
+**Use Case Name:** Invalid career selection
+
+**Test Steps:**
+- Submit empty or invalid career
+
+**Expected Result:**
+Error message displayed
 
 ---
 
 ## Notes
-- Constraints enforced at DB and ORM levels
-- All access methods wrapped in service layer
-- Tests executable via integration test suite
+- O*NET database and user_responses uses SQLite3 and is accessed directly through Python’s sqlite3 module  
+- SQL queries are written inside Flask route helper functions
+- Data is based on the O*NET dataset and it is following it's structure
+- Testing is performed manually through the application workflows and by direct SQL queries
+
