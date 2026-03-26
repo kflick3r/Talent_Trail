@@ -85,14 +85,16 @@ def get_skills(onetsoc_code):
         
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
+    
+    #Changed: Uses scale_id - 'IM' so survey shows 10 most important skills for occupation
 
     query = """
-        SELECT cmr.element_name, MAX(s.data_value) as data_value, cmr.description
+        SELECT cmr.element_name, s.data_value, cmr.description
         FROM skills s
         JOIN content_model_reference cmr ON s.element_id = cmr.element_id
         WHERE s.onetsoc_code = ?
-        GROUP BY cmr.element_name, cmr.description
-        ORDER BY data_value DESC
+        AND s.scale_id = 'IM'
+        ORDER BY s.data_value DESC
         LIMIT 10
     """
 
@@ -130,6 +132,120 @@ def get_career_name(onetsoc_code):
 # Debugging output (runs at startup)
 print("Database path:", DB_PATH)
 print("Sample careers:", get_careers()[:5])
+
+
+#-----------------------------------------------
+# Comparison Functions
+#-----------------------------------------------
+
+def get_skill_levels_and_importance(onetsoc_code, skill_names):
+    '''
+    Pulls the O*NET Level (LV) and Importance (IM) values
+    for the selected skills for one occupation.
+
+    Parameters:
+        onetsoc_code: selected career code
+        skill_names: list of skill names shown on the survey
+
+    Returns:
+        list of dictionaries like:
+        [
+            {
+                "skill_name": "Critical Thinking",
+                "onet_level": 4.75,
+                "onet_importance": 4.25
+            }
+        ]
+    '''
+
+    if not onetsoc_code or not skill_names:
+        return []
+
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+
+    # Create the right number of ? placeholders for the IN clause
+    placeholders = ",".join(["?"] * len(skill_names))
+
+    query = f"""
+        SELECT
+            cmr.element_name,
+            MAX(CASE WHEN s.scale_id = 'LV' THEN s.data_value END) AS onet_level,
+            MAX(CASE WHEN s.scale_id = 'IM' THEN s.data_value END) AS onet_importance
+        FROM skills s
+        JOIN content_model_reference cmr
+            ON s.element_id = cmr.element_id
+        WHERE s.onetsoc_code = ?
+          AND cmr.element_name IN ({placeholders})
+          AND s.scale_id IN ('LV', 'IM')
+        GROUP BY cmr.element_name
+    """
+
+    params = [onetsoc_code] + skill_names
+    c.execute(query, params)
+    rows = c.fetchall()
+
+    conn.close()
+
+    results = []
+    for row in rows:
+        results.append({
+            "skill_name": row[0],
+            "onet_level": float(row[1]) if row[1] is not None else 0,
+            "onet_importance": float(row[2]) if row[2] is not None else 0
+        })
+
+    return results
+
+
+def rank_skill_gaps(skill_data, user_ratings):
+    '''
+    Compares user skill ratings against O*NET data.
+
+    Parameters:
+        skill_data: list from get_skill_levels_and_importance()
+        user_ratings: dictionary like
+            {
+                "Critical Thinking": 3,
+                "Active Listening": 4
+            }
+
+    Returns:
+        list of dictionaries sorted by weighted_gap descending
+    '''
+
+    results = []
+
+    for skill in skill_data:
+        skill_name = skill["skill_name"]
+        onet_level = skill["onet_level"]
+        onet_importance = skill["onet_importance"]
+        user_level = user_ratings.get(skill_name, 0)
+
+        # Raw skill gap
+        gap = onet_level - user_level
+
+        # If user is already above the O*NET level,
+        # do not treat that as a negative priority
+        if gap < 0:
+            gap = 0
+
+        # Weight the gap by importance
+        importance_weight = onet_importance / 5
+        weighted_gap = gap * importance_weight
+
+        results.append({
+            "skill_name": skill_name,
+            "user_level": user_level,
+            "onet_level": round(onet_level, 2),
+            "onet_importance": round(onet_importance, 2),
+            "gap": round(gap, 2),
+            "weighted_gap": round(weighted_gap, 2)
+        })
+
+    results.sort(key=lambda x: x["weighted_gap"], reverse=True)
+    return results
+
 
 
 # ----------------------------------------------
