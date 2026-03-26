@@ -65,6 +65,7 @@ Represents the available occupation/career options. Stores core occupation infor
 **Expected Result:** Second insert test fails
 **Actual Result:** 
 **Status:** 
+
 ---
 
 ## 2) Table: skills
