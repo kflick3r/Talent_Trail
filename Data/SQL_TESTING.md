@@ -114,8 +114,6 @@ Represents the skills that are necessary for each oppucation in occupation_data.
 ### Table Description
 Stores user career and skill survey responses and a response_id to connect through the tables.
 
-Join table mapping users to groups.
-
 ### Fields
 | Field Name | Description | Constraints |
 |----------|------------|-------------|
@@ -171,7 +169,7 @@ Tracks elements such as cognitive abilities, worker characteristics, oral compre
 ## 5) Table: ete_categories (TESTS)
 
 ### Table Description
-Stores weekly availability time blocks per user and group.
+Provide descriptions of the Education, Training, and Experience percent frequency categories.
 
 ### Fields
 | Field Name | Description | Constraints |
