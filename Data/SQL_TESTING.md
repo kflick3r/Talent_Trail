@@ -65,8 +65,6 @@ Represents the available occupation/career options. Stores core occupation infor
 **Expected Result:** Second insert test fails
 **Actual Result:** 
 **Status:** 
-**Post-conditions:** 
-
 ---
 
 ## 2) Table: skills
@@ -145,7 +143,7 @@ Stores user-selected values for career and skill survey responses and a unique r
 
 ---
 
-## 4) Table: content_model_reference (NEEDS Test Review)
+## 4) Table: content_model_reference
 
 ### Table Description
 Defines content model elements such as skills and abilities. Tracks elements such as cognitive abilities, worker characteristics, oral comprehension, etc. 
@@ -172,7 +170,7 @@ Defines content model elements such as skills and abilities. Tracks elements suc
 1. Insert element_id 
 2. Query by element_id  
 
-**Expected Result:** Element 
+**Expected Result:** Element id
 **Status:** Pass  
 
 ---
