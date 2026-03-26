@@ -1,4 +1,4 @@
-# SQL_TESTING.md
+# SQL_TESTING_DRAFT.md
 ## Project Milestone 5: SQL Design
 **Project:** Team 1: Algorithm Alliance - Talent Trail  
 **Purpose:** Database design and testing specification for developers
