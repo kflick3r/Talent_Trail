@@ -22,11 +22,11 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
 
 ### User Flow
 1. User lands on homepage
-2. User selects career from searchable dropdown (Trie-based search)
+2. User selects career from searchable dropdown
 3. Backend retrieves:
 - Career description
 - Required skills list
-4. User completes survey (Yes/No or 1–5 scale)
+4. User completes survey (1–7 scale)
 5. Backend:
 - Calculates match %
 - Identifies missing skills
@@ -35,6 +35,7 @@ People often struggle to evaluate their skill sets and develop a comprehensive p
 - Match percentage
 - Missing skills
 - Selected skills users have
+- Distribution Graph of typical education needed
 - Button to generate PDF
 7. PDF of report is generated and downloaded
 

@@ -55,11 +55,11 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
 
 **User Flow**
 1. User lands on homepage
-2. User selects career from a dropdown
+2. User selects career from searchable dropdown
 3. Backend retrieves:
     - Career description
     - Required skills list
-4. User completes survey (Yes/No)
+4. User completes survey (1–7 scale)
 5. Backend:
     - Calculates match %
     - Identifies missing skills
@@ -68,6 +68,7 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
     - Match percentage
     - Missing skills
     - Selected skills users have
+    - Distribution Graph of typical education needed
     - Button to generate PDF
 7. PDF of report is generated and downloaded
 
