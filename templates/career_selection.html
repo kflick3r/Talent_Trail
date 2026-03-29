@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Talent Trail</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Talent Trail</title>
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="top-nav">
+            <div><strong>Talent Trail</strong></div>
+	    <div class="brand">Talent Trail</div>
+                <a href="../">Home</a>
+                <a href="./">Search</a>
+                <a href="../about">Contact</a>
+                <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+            </div>
+        </div>
 
-    <body>
-        <h1>Select a Career to Explore:</h1>
+        <h1 class="site-title">Select a Career</h1>
+        <p class="tagline">Select a career to view your skills</p>
 
-        <form action="careers/survey" method="post">
-            <label for="career">Select a Career:</label>
-            <select name="career" id="career" required>
-                <option value="" disabled selected>Select a Career...</option>
-                {% for code, title in careers %}
-                    <option value="{{code}}">{{title}}</option>
-                {% endfor %}
-            </select>
+        <div class="career-card">
+		<form action="{{ request.script_root }}/careers/survey" method="post" class="career-form">
+		<label for="career" class="career-label">Select Career</label>
 
-            <button type="submit">Continue</button>
-        </form>
-    </body>
+                <select name="career" id="career" required class="career-dropdown">
+                    <option value="" disabled selected>Select a Career...</option>
+                    {% for code, title in careers %}
+                        <option value="{{ code }}">{{ title }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="button-row">
+                    <button type="submit" class="primary-button">Take Quiz</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer">
+            <a href="../about">About</a>
+            <a href="../about">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
+</body>
 </html>

@@ -23,6 +23,10 @@ import os
 
 app = Flask(__name__)
 
+app.config['APPLICATION_ROOT'] = '/user/famo7408/proxy/5000'
+
+
+
 # Determine the absolute path to database file
 # Ensures the app works even if this file is moved
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -312,11 +316,53 @@ def survey():
 
 @app.route("/careers/survey/results", methods=["POST"])
 def results():
-    '''
-    Temporary fill-in page.
-    Renders results page.
-    '''
-    return render_template("results.html")
+    onetsoc_code = request.form.get("career_code")
+
+    if not onetsoc_code:
+        return "Error: No career code submitted.", 400
+
+    skills = get_skills(onetsoc_code)
+    career_name = get_career_name(onetsoc_code)
+
+    user_ratings = {}
+    skill_names = []
+
+    for idx, (skill_name, value, description) in enumerate(skills):
+        rating = request.form.get(f"rating_{idx}")
+        if rating is not None:
+            user_ratings[skill_name] = int(rating)
+            skill_names.append(skill_name)
+
+    skill_data = get_skill_levels_and_importance(onetsoc_code, skill_names)
+    ranked_results = rank_skill_gaps(skill_data, user_ratings)
+
+    matched_skills = [r["skill_name"] for r in ranked_results if r["gap"] == 0]
+    skills_to_improve = [r["skill_name"] for r in ranked_results if r["gap"] > 0]
+
+    if ranked_results:
+        compatibility_score = round((len(matched_skills) / len(ranked_results)) * 100)
+    else:
+        compatibility_score = 0
+
+    if skills_to_improve:
+        top_skills = skills_to_improve[:3]
+        if len(top_skills) == 1:
+            feedback_message = f"Improving {top_skills[0]} will increase your compatibility with {career_name.lower()} roles."
+        elif len(top_skills) == 2:
+            feedback_message = f"Improving {top_skills[0]} and {top_skills[1]} will increase your compatibility with {career_name.lower()} roles."
+        else:
+            feedback_message = f"Improving {top_skills[0]}, {top_skills[1]}, and {top_skills[2]} will increase your compatibility with {career_name.lower()} roles."
+    else:
+        feedback_message = f"You currently meet or exceed the top measured skill levels for {career_name.lower()}."
+
+    return render_template(
+        "results.html",
+        career_name=career_name,
+        compatibility_score=compatibility_score,
+        matched_skills=matched_skills,
+        skills_to_improve=skills_to_improve,
+        feedback_message=feedback_message
+    )
 
 # ----------------------------------------------
 # APPLICATION LAUNCH / MAIN

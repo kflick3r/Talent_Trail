@@ -1,7 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>Talent Trail</head>
-    <body>
-        <h1>Results Page</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Talent Trail Results</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="page-container">
+        <h1 class="site-title">Talent Trail</h1>
+        <p class="tagline">Career Compatibility Results</p>
+
+        <div class="card">
+            <div class="results-section">
+                <h2>Career</h2>
+                <p>{{ career_name }}</p>
+            </div>
+
+            <div class="results-section">
+                <h2>Compatibility Score</h2>
+                <p class="results-score">{{ compatibility_score }}%</p>
+            </div>
+
+            <div class="results-split">
+                <div class="results-column">
+                    <h2>Matched Skills</h2>
+                    <ul>
+                        {% for skill in matched_skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="results-column">
+                    <h2>Skills to Improve</h2>
+                    <ul>
+                        {% for skill in skills_to_improve %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Feedback</h2>
+                <p>{{ feedback_message }}</p>
+            </div>
+        </div>
+
+        <div class="button-row">
+            <a href="../../careers" class="primary-button">Return to Career Search</a>
+            <a href="../../../" class="primary-button">Homepage</a>
+        </div>
+
+        <div class="footer">
+            <a href="../../../about">About</a>
+            <a href="../../../about">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
+</body>
 </html>

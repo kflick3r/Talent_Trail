@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Talent Trail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-container">
+        <h1 class="site-title">Talent Trail</h1>
+
+        {% block content %}
+        {% endblock %}
+
+        <div class="footer">
+            <a href="../../about">About</a>
+            <a href="../../about">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
