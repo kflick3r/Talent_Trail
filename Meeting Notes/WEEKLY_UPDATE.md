@@ -331,3 +331,58 @@ Current blockers and issues include:
 ## Notes
 This file will be updated weekly as the project progresses.  
 Earlier weekly entries may be retained below or moved to an archive directory if the file grows large.
+
+**Week:** 10  
+**Meeting Held:** Yes  
+**Meeting Date:** 3/29/2026  
+**Meeting Duration:** 30 minutes  
+**Meeting Format:** Zoom  
+
+## Progress Since Last Week
+
+This week, the team made progress connecting frontend pages to backend functionality, improving documentation, and continuing milestone support work.
+
+### Major Progress Items
+
+- Connected survey responses to the backend so the results page now displays:
+  - selected career
+  - compatibility score
+  - matched skills
+  - skills to improve
+- Fixed routing issues in JupyterHub so navigation works between the landing page, career selection page, survey page, and results page
+- Continued applying shared CSS and updated the landing page styling to better match the mockups
+- Continued development of the comparison algorithm and milestone support work
+- Began work on unit testing and About page content
+- Continued database and results-page work, including support for storing user responses and milestone documentation
+
+## Planned Tasks for Next Week
+
+- Finish applying CSS across the career selection, survey, and results pages for a more consistent UI
+- Clean up the HTML structure and begin organizing templates
+- Explore using template inheritance to reduce repeated code across pages
+- Test the comparison algorithm and continue refining its output
+- Write/update the About page for the algorithm and project
+- Continue unit testing
+- Continue results page and PDF-related milestone work
+
+## Blockers and Issues
+
+Current blockers and issues include:
+
+- Routing and static file paths remain challenging in the JupyterHub proxy environment
+- CSS and navigation links are not yet fully standardized across the app
+- The team is still working through how to consistently handle the JupyterHub/csel proxy setup without duplicating effort
+
+## Individual Contributions This Week
+
+- **Mark:** Pushed updates to the comparison algorithm, updated the weekly status, and continued backend work supporting career-data comparison.
+- **Kassidy:** Started unit testing, worked on the About page, and supported Milestone 5 tasks.
+- **Lisa:** Worked on the Milestone 5 document, set up the table for user responses, and confirmed response data was being added properly.
+- **Sarah:** Implemented the dynamic results page by connecting survey responses to the backend, fixed JupyterHub routing between the main app pages, and continued applying shared CSS and updating the landing page styling.
+
+## Individual Plans for Next Week
+
+- **Mark:** Test the algorithm, write About page content for the algorithm, and continue updating project documentation.
+- **Kassidy:** Finish unit testing and continue About page work.
+- **Lisa:** Continue work on the results page and PDF-related tasks.
+- **Sarah:** Finish applying CSS across remaining pages, clean up the HTML structure, and begin organizing templates with possible template inheritance.
