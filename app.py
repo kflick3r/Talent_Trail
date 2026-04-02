@@ -18,9 +18,10 @@ Usage:
 '''
 
 import pdfkit
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, session
 import sqlite3
 import os
+app.secret_key = os.urandom(24)
 
 app = Flask(__name__)
 
@@ -362,6 +363,15 @@ def results():
     else:
         feedback_message = f"You currently meet or exceed the top measured skill levels for {career_name.lower()}."
 
+    session["results"] = {
+    "career_name": career_name,
+    "compatibility_score": compatibility_score,
+    "matched_skills": matched_skills,
+    "skills_to_improve": skills_to_improve,
+    "onetsoc_code": onetsoc_code,
+    "ranked_results": ranked_results
+}
+
     return render_template(
         "results.html",
         career_name=career_name,
@@ -371,39 +381,25 @@ def results():
         feedback_message=feedback_message
     )
 
-@app.route("/careers/survey/results/pdf", methods=["POST"])
+@app.route("/careers/survey/results/pdf")
 def results_pdf():
-    onetsoc_code = request.form.get("career_code")
+    data = session.get("results")
 
-    if not onetsoc_code:
-        return "Error: no code submitted.", 400
-    
-    skills = get_skills(onetsoc_code)
-    career_name = get_career_name(onetsoc_code)
+    if not data:
+        return "No results found.", 400
 
-    user_ratings = {}
-    for idx, (skill_name, value, description) in enumerate(skills):
-        rating = request.form.get(f"rating_{idx}")
-        if rating is not None:
-            user_ratings[skill_name] = int(rating)
-
-    ranked_results, matched_skills, skills_to_improve, compatibility_score = calculate_results(onetsoc_code, user_ratings)
-
-    #render HTML as a string to prep for PDF
-    html = render_template("results_pdf.html", 
-        career_name=career_name, 
-        compatibility_score=compatibility_score, 
-        matched_skills=matched_skills, 
-        skills_to_improve=skills_to_improve, 
-        ranked_results=ranked_results,
-        onetsoc_code=onetsoc_code
+    html = render_template("results_pdf.html",
+        career_name=data["career_name"],
+        compatibility_score=data["compatibility_score"],
+        matched_skills=data["matched_skills"],
+        skills_to_improve=data["skills_to_improve"]
     )
 
-    pdf = pdfkit.from_skills(html, False)
+    pdf = pdfkit.from_string(html, False)
 
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "attachment; filename=career_report.pdf"
+    response.headers["Content-Disposition"] = "attachment; filename=results.pdf"
 
     return response
 
