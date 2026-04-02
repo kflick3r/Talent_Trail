@@ -47,6 +47,15 @@
             </div>
         </div>
 
+        <form action = "/careers/survey/results/pdf", method="POST">
+            <input type="hidden" name="career_code" value="{{ onetsoc_code }}">
+            {% for i in range(matched_skills|length + skills_to_improve|length) %}
+                <input type="hidden" name="rating_{{i}}" value="{{ request.form['rating_' ~  i] }}">
+            {% endfor %}     
+            
+            <button type="submit">Download Career Results</button>
+        </form>
+
         <div class="button-row">
             <a href="../../careers" class="primary-button">Return to Career Search</a>
             <a href="../../../" class="primary-button">Homepage</a>

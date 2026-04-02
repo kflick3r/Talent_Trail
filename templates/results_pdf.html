@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Career Results Download</title>
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+    <body>
+        <h1>Career Compatibility Report</h1>
+
+        <h2>{{ career_name }}</h2>
+        <p><strong>Compatibility Score: </strong> {{compatibility_score}}%</p>
+
+        <h3>Skills to Improve: </h3>
+        <ul>
+            {% for skills in skills_to_improve % }
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Matched Skills: </h3>
+        <ul>
+            {% for skill in matched_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Detailed Results: </h3>
+        <ul>
+            {% for r in ranked_results %}
+            <li>
+                {{ r.skill_name }} -
+                Gap: {{ r.gap }}, Importance: {{ r.onet_importance }}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

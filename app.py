@@ -17,7 +17,8 @@ Usage:
         - Database file located at: Data/onet.db
 '''
 
-from flask import Flask, render_template, request
+import pdfkit
+from flask import Flask, render_template, request, make_response
 import sqlite3
 import os
 
@@ -248,6 +249,22 @@ def rank_skill_gaps(skill_data, user_ratings):
     results.sort(key=lambda x: x["weighted_gap"], reverse=True)
     return results
 
+# move the calculation out of the route function to support PDF creation
+def calculate_results(onetsoc_code, user_ratings):
+    skill_names = list(user_ratings.keys())
+
+    skill_data = get_skill_levels_and_importance(onetsoc_code, skill_names)
+    ranked_results = rank_skill_gaps(skill_data, user_ratings)
+
+    matched_skills = [r["skill_name"] for r in ranked_results if r["gap"] == 0]
+    skills_to_improve = [r["skill_name"] for r in ranked_results if r["gap"] > 0]
+
+    if ranked_results:
+        compatibility_score = round((len(matched_skills) / len(ranked_results)) * 100)
+    else:
+        compatibility_score = 0
+
+    return ranked_results, matched_skills, skills_to_improve, compatibility_score
 
 
 # ----------------------------------------------
@@ -325,25 +342,15 @@ def results():
     career_name = get_career_name(onetsoc_code)
 
     user_ratings = {}
-    skill_names = []
-
     for idx, (skill_name, value, description) in enumerate(skills):
         rating = request.form.get(f"rating_{idx}")
         if rating is not None:
             user_ratings[skill_name] = int(rating)
-            skill_names.append(skill_name)
 
-    skill_data = get_skill_levels_and_importance(onetsoc_code, skill_names)
-    ranked_results = rank_skill_gaps(skill_data, user_ratings)
-
-    matched_skills = [r["skill_name"] for r in ranked_results if r["gap"] == 0]
-    skills_to_improve = [r["skill_name"] for r in ranked_results if r["gap"] > 0]
-
-    if ranked_results:
-        compatibility_score = round((len(matched_skills) / len(ranked_results)) * 100)
-    else:
-        compatibility_score = 0
-
+    ranked_results, matched_skills, skills_to_improve, compatibility_score = calculate_results(
+    onetsoc_code, user_ratings
+)
+    
     if skills_to_improve:
         top_skills = skills_to_improve[:3]
         if len(top_skills) == 1:
@@ -364,6 +371,42 @@ def results():
         feedback_message=feedback_message
     )
 
+@app.route("/careers/survey/results/pdf", methods=["POST"])
+def results_pdf():
+    onetsoc_code = request.form.get("career_code")
+
+    if not onetsoc_code:
+        return "Error: no code submitted.", 400
+    
+    skills = get_skills(onetsoc_code)
+    career_name = get_career_name(onetsoc_code)
+
+    user_ratings = {}
+    for idx, (skill_name, value, description) in enumerate(skills):
+        rating = request.form.get(f"rating_{idx}")
+        if rating is not None:
+            user_ratings[skill_name] = int(rating)
+
+    ranked_results, matched_skills, skills_to_improve, compatibility_score = calculate_results(onetsoc_code, user_ratings)
+
+    #render HTML as a string to prep for PDF
+    html = render_template("results_pdf.html", 
+        career_name=career_name, 
+        compatibility_score=compatibility_score, 
+        matched_skills=matched_skills, 
+        skills_to_improve=skills_to_improve, 
+        ranked_results=ranked_results,
+        onetsoc_code=onetsoc_code
+    )
+
+    pdf = pdfkit.from_skills(html, False)
+
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "attachment; filename=career_report.pdf"
+
+    return response
+
 # ----------------------------------------------
 # APPLICATION LAUNCH / MAIN
 # ----------------------------------------------
@@ -376,4 +419,3 @@ if __name__ == "__main__":
     - debug=True enables auto-reload on code changes and shows detailed error messages
     '''
     app.run(host="0.0.0.0", port=5000, debug=True)
-
