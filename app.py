@@ -49,6 +49,25 @@ def generate_pdf(html):
         from weasyprint import HTML
         return HTML(string=html).write_pdf()
         
+def generate_pdf(html):
+    import flask
+
+    if wkhtmltopdf_path:
+        import pdfkit
+        config = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
+
+        return pdfkit.from_string(
+            html,
+            False,
+            configuration=config,
+            options={
+                "enable-local-file-access": ""
+            }
+        )
+
+    else:
+        from weasyprint import HTML
+        return HTML(string=html, base_url=flask.request.url_root).write_pdf()
 
 # ---------------------------------------------
 # Support for JH Proxy
