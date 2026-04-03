@@ -17,11 +17,47 @@ Usage:
         - Database file located at: Data/onet.db
 '''
 
-from flask import Flask, render_template, request
+import pdfkit
+from flask import Flask, render_template, request, make_response, session, url_for
 import sqlite3
 import os
+import prefix
+import shutil
 
 app = Flask(__name__)
+
+app.config['SESSION_COOKIE_PATH'] = '/'
+app.secret_key = "dev-stable-key"
+
+# ------------------------------------------------
+# PDF loading software based on environment
+# ------------------------------------------------
+
+wkhtmltopdf_path = shutil.which("wkhtmltopdf")
+
+print("WKHTML PATH:", wkhtmltopdf_path)
+
+def generate_pdf(html):
+    #supported locally
+    if wkhtmltopdf_path:
+        import pdfkit
+        config = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
+        return pdfkit.from_string(html, False, configuration=config)
+
+    #supported in JH
+    else:
+        from weasyprint import HTML
+        return HTML(string=html).write_pdf()
+        
+
+# ---------------------------------------------
+# Support for JH Proxy
+# ---------------------------------------------
+
+# Only apply prefix in JupyterHub
+if "JUPYTERHUB_SERVICE_PREFIX" in os.environ:
+    import prefix
+    prefix.use_PrefixMiddleware(app)
 
 # Determine the absolute path to database file
 # Ensures the app works even if this file is moved
@@ -244,6 +280,22 @@ def rank_skill_gaps(skill_data, user_ratings):
     results.sort(key=lambda x: x["weighted_gap"], reverse=True)
     return results
 
+# move the calculation out of the route function to support PDF creation
+def calculate_results(onetsoc_code, user_ratings):
+    skill_names = list(user_ratings.keys())
+
+    skill_data = get_skill_levels_and_importance(onetsoc_code, skill_names)
+    ranked_results = rank_skill_gaps(skill_data, user_ratings)
+
+    matched_skills = [r["skill_name"] for r in ranked_results if r["gap"] == 0]
+    skills_to_improve = [r["skill_name"] for r in ranked_results if r["gap"] > 0]
+
+    if ranked_results:
+        compatibility_score = round((len(matched_skills) / len(ranked_results)) * 100)
+    else:
+        compatibility_score = 0
+
+    return ranked_results, matched_skills, skills_to_improve, compatibility_score
 
 
 # ----------------------------------------------
@@ -312,11 +364,72 @@ def survey():
 
 @app.route("/careers/survey/results", methods=["POST"])
 def results():
-    '''
-    Temporary fill-in page.
-    Renders results page.
-    '''
-    return render_template("results.html")
+    onetsoc_code = request.form.get("career_code")
+
+    if not onetsoc_code:
+        return "Error: No career code submitted.", 400
+
+    skills = get_skills(onetsoc_code)
+    career_name = get_career_name(onetsoc_code)
+
+    user_ratings = {}
+    for idx, (skill_name, value, description) in enumerate(skills):
+        rating = request.form.get(f"rating_{idx}")
+        if rating is not None:
+            user_ratings[skill_name] = int(rating)
+
+    ranked_results, matched_skills, skills_to_improve, compatibility_score = calculate_results(
+    onetsoc_code, user_ratings
+)
+    
+    if skills_to_improve:
+        top_skills = skills_to_improve[:3]
+        if len(top_skills) == 1:
+            feedback_message = f"Improving {top_skills[0]} will increase your compatibility with {career_name.lower()} roles."
+        elif len(top_skills) == 2:
+            feedback_message = f"Improving {top_skills[0]} and {top_skills[1]} will increase your compatibility with {career_name.lower()} roles."
+        else:
+            feedback_message = f"Improving {top_skills[0]}, {top_skills[1]}, and {top_skills[2]} will increase your compatibility with {career_name.lower()} roles."
+    else:
+        feedback_message = f"You currently meet or exceed the top measured skill levels for {career_name.lower()}."
+
+    session["results"] = {
+    "career_name": career_name,
+    "compatibility_score": compatibility_score,
+    "matched_skills": matched_skills,
+    "skills_to_improve": skills_to_improve,
+    "onetsoc_code": onetsoc_code,
+    "ranked_results": ranked_results
+}
+    session.modified = True
+    
+    print("Stored in session:", session.get("results"))
+
+    return render_template(
+        "results.html",
+        career_name=career_name,
+        compatibility_score=compatibility_score,
+        matched_skills=matched_skills,
+        skills_to_improve=skills_to_improve,
+        feedback_message=feedback_message
+    )
+
+@app.route("/careers/survey/results/pdf")
+def results_pdf():
+    data = session.get("results")
+
+    if not data:
+        return "No results found.", 400
+
+    html = render_template("results_pdf.html", **data)
+
+    pdf = generate_pdf(html)
+
+    response = make_response(pdf)
+    response.headers["Content-Type"] = "application/pdf"
+    response.headers["Content-Disposition"] = "inline; filename=results.pdf"
+
+    return response
 
 # ----------------------------------------------
 # APPLICATION LAUNCH / MAIN
@@ -330,4 +443,3 @@ if __name__ == "__main__":
     - debug=True enables auto-reload on code changes and shows detailed error messages
     '''
     app.run(host="0.0.0.0", port=5000, debug=True)
-

@@ -22,13 +22,37 @@ from flask import Flask, render_template, request, make_response, session, url_f
 import sqlite3
 import os
 import prefix
+import shutil
 
 app = Flask(__name__)
 
 app.config['SESSION_COOKIE_PATH'] = '/'
 app.secret_key = "dev-stable-key"
 
-config = pdfkit.configuration(wkhtmltopdf="/usr/local/bin/wkhtmltopdf")
+# ------------------------------------------------
+# PDF loading software based on environment
+# ------------------------------------------------
+
+wkhtmltopdf_path = shutil.which("wkhtmltopdf")
+
+print("WKHTML PATH:", wkhtmltopdf_path)
+
+def generate_pdf(html):
+    #supported locally
+    if wkhtmltopdf_path:
+        import pdfkit
+        config = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
+        return pdfkit.from_string(html, False, configuration=config)
+
+    #supported in JH
+    else:
+        from weasyprint import HTML
+        return HTML(string=html).write_pdf()
+        
+
+# ---------------------------------------------
+# Support for JH Proxy
+# ---------------------------------------------
 
 # Only apply prefix in JupyterHub
 if "JUPYTERHUB_SERVICE_PREFIX" in os.environ:
@@ -394,16 +418,12 @@ def results():
 def results_pdf():
     data = session.get("results")
 
-    print("PDF Stored in session:", data)
-
     if not data:
         return "No results found.", 400
 
-    html = render_template("results.html", **data)
+    html = render_template("results_pdf.html", **data)
 
-    options = {"enable-local-file-access": ""}
-
-    pdf = pdfkit.from_string(html, False, configuration=config, options=options)
+    pdf = generate_pdf(html)
 
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
