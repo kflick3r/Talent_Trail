@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Career Results Download</title>
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     </head>
     <body>
         <h1>Career Compatibility Report</h1>
@@ -13,7 +14,7 @@
 
         <h3>Skills to Improve: </h3>
         <ul>
-            {% for skills in skills_to_improve % }
+            {% for skill in skills_to_improve %}
             <li>{{ skill }}</li>
             {% endfor %}
         </ul>

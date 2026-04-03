@@ -18,16 +18,22 @@ Usage:
 '''
 
 import pdfkit
-from flask import Flask, render_template, request, make_response, session
+from flask import Flask, render_template, request, make_response, session, url_for
 import sqlite3
 import os
-app.secret_key = os.urandom(24)
+import prefix
 
 app = Flask(__name__)
 
-app.config['APPLICATION_ROOT'] = '/user/famo7408/proxy/5000'
+app.config['SESSION_COOKIE_PATH'] = '/'
+app.secret_key = "dev-stable-key"
 
+config = pdfkit.configuration(wkhtmltopdf="/usr/local/bin/wkhtmltopdf")
 
+# Only apply prefix in JupyterHub
+if "JUPYTERHUB_SERVICE_PREFIX" in os.environ:
+    import prefix
+    prefix.use_PrefixMiddleware(app)
 
 # Determine the absolute path to database file
 # Ensures the app works even if this file is moved
@@ -371,6 +377,9 @@ def results():
     "onetsoc_code": onetsoc_code,
     "ranked_results": ranked_results
 }
+    session.modified = True
+    
+    print("Stored in session:", session.get("results"))
 
     return render_template(
         "results.html",
@@ -385,21 +394,20 @@ def results():
 def results_pdf():
     data = session.get("results")
 
+    print("PDF Stored in session:", data)
+
     if not data:
         return "No results found.", 400
 
-    html = render_template("results_pdf.html",
-        career_name=data["career_name"],
-        compatibility_score=data["compatibility_score"],
-        matched_skills=data["matched_skills"],
-        skills_to_improve=data["skills_to_improve"]
-    )
+    html = render_template("results.html", **data)
 
-    pdf = pdfkit.from_string(html, False)
+    options = {"enable-local-file-access": ""}
+
+    pdf = pdfkit.from_string(html, False, configuration=config, options=options)
 
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "attachment; filename=results.pdf"
+    response.headers["Content-Disposition"] = "inline; filename=results.pdf"
 
     return response
 
