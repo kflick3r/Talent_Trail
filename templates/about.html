@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Talent Trail</title>
-    </head>
-    
-    <body>
-        <h1>About Page</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>About - Talent Trail</title>
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
+</head>
+
+<body>
+<div class="page-container">
+
+    <!-- NAV -->
+    <div class="top-nav">
+        <div class="brand">Talent Trail</div>
+        <div class="nav-links">
+            <a href="{{ request.script_root }}/">Home</a>
+            <a href="{{ request.script_root }}/careers">Search</a>
+            <a href="{{ request.script_root }}/contact">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="site-title">About Talent Trail</h1>
+    <p class="tagline">Helping you discover the right career path</p>
+
+    <!-- CONTENT -->
+    <div class="card" style="max-width: 1000px; margin: 0 auto;">
+
+        <h2>What is Talent Trail?</h2>
         <p>
-            Talent Trail is a web-based career gap analysis tool that generates personalized reports 
-        to help users pursue their professional goals. Users select a desired career and complete 
-        a survey detailing their current skills. Talent Trail then produces a report that analyzes
-        skill gaps and outlines steps toward achieving that career.
-        </p>
-        
-        <p>
-            Many people struggle to accurately evaluate their abilities and create a clear path toward 
-        their ideal career. The process can be overwhelming and time-consuming, often involving 
-        conflicting information from various sources. <br>
-            <br>
-            Talent Trail simplifies this process by aligning real-world career requirements from the  
-        O*NET database with a user-filled survey, delivering a clear and actionable analysis.
+            Talent Trail is a web-based career exploration tool designed to help users
+            discover careers that align with their skills and abilities. The application
+            compares user input with real-world job requirements and provides a compatibility score.
         </p>
 
-        <h2>Vision Statement</h2>
+        <h2>How it Works</h2>
+        <ol>
+            <li>Select a career you are interested in</li>
+            <li>Take the skills quiz</li>
+            <li>Receive a compatibility score</li>
+            <li>Identify matched skills and areas for improvement</li>
+        </ol>
+
+        <h2>Why We Built This</h2>
         <p>
-            Talent Trail empowers users to explore careers by comparing their current qualifications 
-        with industry expectations. Using occupational data from the O*NET database, the platform 
-        generates a personalized gap analysis report that highlights match percentages and 
-        identifies areas for growth.
+            Choosing a career can be overwhelming. Talent Trail simplifies the process
+            by giving users clear, data-driven feedback about where they stand and how
+            they can improve.
         </p>
 
-        <h3>Meet the Team</h3>
-        <ul>
-            <li><strong>Kassidy Flick</strong> (GitHub: `kflick3r`)</li>
-            <li><strong>Lisa Wilder</strong> (GitHub: `Wilder407`)</li>
-            <li><strong>Mark Olmscheid</strong> (GitHub: `Olmscheid`)</li>
-            <li><strong>Sarah Suliman</strong> (GitHub: `sssuliman`)</li>
-        </ul>
-        <p>
-            Developed by students at the University of Colorado Boulder, this project was created as 
-        part of the CSPB 3308 Software Development and Methods course.
-        </p>
-    </body>
-</html>  
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <a href="{{ request.script_root }}/about">About</a>
+        <a href="{{ request.script_root }}/contact">Contact</a>
+        <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+    </div>
+
+</div>
+</body>
+</html>

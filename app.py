@@ -17,7 +17,7 @@ Usage:
         - Database file located at: Data/onet.db
 '''
 
-import pdfkit
+#import pdfkit
 from flask import Flask, render_template, request, make_response, session, url_for
 import sqlite3
 import os
@@ -29,26 +29,14 @@ app = Flask(__name__)
 app.config['SESSION_COOKIE_PATH'] = '/'
 app.secret_key = "dev-stable-key"
 
-# ------------------------------------------------
+# ------------------------------------------
 # PDF loading software based on environment
-# ------------------------------------------------
+# ------------------------------------------
 
 wkhtmltopdf_path = shutil.which("wkhtmltopdf")
 
 print("WKHTML PATH:", wkhtmltopdf_path)
 
-def generate_pdf(html):
-    #supported locally
-    if wkhtmltopdf_path:
-        import pdfkit
-        config = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
-        return pdfkit.from_string(html, False, configuration=config)
-
-    #supported in JH
-    else:
-        from weasyprint import HTML
-        return HTML(string=html).write_pdf()
-        
 def generate_pdf(html):
     import flask
 
@@ -64,14 +52,9 @@ def generate_pdf(html):
                 "enable-local-file-access": ""
             }
         )
-
     else:
         from weasyprint import HTML
         return HTML(string=html, base_url=flask.request.url_root).write_pdf()
-
-# ---------------------------------------------
-# Support for JH Proxy
-# ---------------------------------------------
 
 # Only apply prefix in JupyterHub
 if "JUPYTERHUB_SERVICE_PREFIX" in os.environ:
@@ -342,6 +325,10 @@ def about_page():
     Renders the about page.
     '''
     return render_template("about.html")
+
+@app.route("/contact")
+def contact_page():
+    return render_template("contact.html")
     
 @app.route("/careers")
 def career_selection():

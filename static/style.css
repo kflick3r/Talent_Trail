@@ -7,34 +7,57 @@ body {
 }
 
 .page-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 40px 32px;
+    padding: 30px 32px 40px 32px;
 }
+
+/* ---------- NAV ---------- */
+
+.brand {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0 20px 0;
+    border-bottom: 2px solid #000100;
+    margin-bottom: 35px;
+}
+
+.nav-links a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: #000100;
+    font-size: 20px;
+}
+
+/* ---------- HERO / TITLES ---------- */
 
 .site-title {
     text-align: center;
     font-size: 72px;
     font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 16px;
+    margin-top: 10px;
+    margin-bottom: 12px;
 }
 
 .tagline {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
-.card {
-    background-color: #B3C3D1;
-    border: 1px solid #7391AB;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-    padding: 48px;
-    margin: 40px auto;
-    max-width: 1100px;
+.hero-subtext {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 25px;
 }
+
+/* ---------- BUTTONS ---------- */
 
 .primary-button {
     display: inline-block;
@@ -54,33 +77,200 @@ body {
     opacity: 0.92;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #000100;
-    font-size: 18px;
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* ---------- CARDS ---------- */
+
+.card {
+    background-color: #D9E3EC;
+    border: 1px solid #7391AB;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+    padding: 36px;
 }
 
 .card h2 {
-    font-size: 38px;
+    font-size: 34px;
+    margin-top: 0;
     margin-bottom: 18px;
 }
 
-.card p {
-    font-size: 24px;
-    line-height: 1.7;
+.card p,
+.card li {
+    font-size: 22px;
+    line-height: 1.6;
 }
 
 .card ol,
 .card ul {
-    font-size: 24px;
-    line-height: 1.7;
-    padding-left: 30px;
+    padding-left: 24px;
 }
 
+/* ---------- LANDING PAGE ---------- */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.landing-card {
+    min-height: 260px;
+}
+
+.landing-card h2 {
+    margin-top: 0;
+}
+
+.landing-card p,
+.landing-card li {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.landing-card ol {
+    padding-left: 28px;
+}
+
+/* ---------- CAREER SELECTION ---------- */
+
+.career-card {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 10px 0 20px 0;
+}
+
+.career-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.career-label {
+    display: none;
+}
+
+.dropdown-shell {
+    width: 760px;
+    max-width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #7391AB;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    padding: 6px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.dropdown-shell::after {
+    content: "▾";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #000100;
+    pointer-events: none;
+}
+
+.career-dropdown {
+    width: 100%;
+    padding: 16px 18px;
+    font-size: 24px;
+    font-family: "Inria Serif", serif;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #000100;
+    outline: none;
+    appearance: none;
+}
+
+.career-dropdown:focus {
+    outline: none;
+}
+
+/* ---------- SURVEY PAGE ---------- */
+
+.career-badge {
+    background-color: #B3C3D1;
+    border: 1px solid #7391AB;
+    border-radius: 16px;
+    padding: 12px 24px;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+    font-size: 22px;
+    text-align: center;
+}
+
+.survey-card {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.survey-instructions {
+    font-size: 20px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.rating-header {
+    display: grid;
+    grid-template-columns: 280px repeat(8, 1fr);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.rating-row {
+    display: grid;
+    grid-template-columns: 280px repeat(8, 1fr);
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.rating-options {
+    display: contents;
+}
+
+.rating-options label {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.rating-options input {
+    display: none;
+}
+
+.radio-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid #7391AB;
+    background-color: #D3DEE8;
+}
+
+.rating-options input:checked + .radio-circle {
+    background-color: #577590;
+    border-color: #577590;
+}
+
+/* ---------- RESULTS PAGE ---------- */
+
 .results-section {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 .results-section h2 {
@@ -118,72 +308,126 @@ body {
 .results-column ul {
     font-size: 24px;
     line-height: 1.6;
-    padding-left: 30px;
+    padding-left: 24px;
 }
 
-.button-row {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
+/* ---------- Contact -------- */
 
-
-.career-card {
-    background-color: transparent;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 10px 0;
-}
-
-.career-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.career-label {
-    display: none;
-}
-
-.career-dropdown {
-    width: 760px;
-    max-width: 100%;
-    padding: 18px 20px;
-    font-size: 24px;
-    font-family: "Inria Serif", serif;
-    border: 1px solid #7391AB;
+.contact-banner {
+    background-color: #577590;
+    color: #000100;
     border-radius: 16px;
-    background-color: white;
-    color: #000100;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-    margin-bottom: 40px;
+    padding: 12px 24px;
+    max-width: 1100px;
+    margin: 0 auto 14px auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
-.career-dropdown:focus {
-    outline: none;
-    border-color: #577590;
+.contact-card {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 0;
-    border-bottom: 1px solid #000100;
-    margin-bottom: 30px;
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 40px;
+    margin-top: 20px;
 }
 
-.nav-links a {
-    margin-left: 24px;
-    text-decoration: none;
-    color: #000100;
+.contact-grid p {
+    margin: 6px 0;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid #000100;
     font-size: 18px;
 }
 
-.button-row {
+.footer a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #000100;
+}
+
+/* Divider under sections */
+.section-divider {
+    border-top: 1px solid #000100;
+    margin: 20px 0;
+}
+
+/* Vertical divider between columns */
+.results-split {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 10px;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 30px 0;
+    position: relative;
+}
+
+.results-split::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background-color: #000100;
+}
+
+/* Add padding inside card */
+.survey-card {
+    padding: 40px 50px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-split {
+        flex-direction: column;
+    }
+
+    .top-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links a {
+        margin: 0 10px;
+    }
+
+    .site-title {
+        font-size: 56px;
+    }
+
+    .tagline {
+        font-size: 24px;
+    }
+
+    .hero-subtext {
+        font-size: 18px;
+    }
+
+    .rating-header,
+    .rating-row {
+        grid-template-columns: 180px repeat(8, 1fr);
+    }
+
+    .dropdown-shell {
+        width: 100%;
+    }
 }

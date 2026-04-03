@@ -3,37 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Talent Trail</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
 </head>
 
 <body>
-    <div class="page-container">
+<div class="page-container">
 
-        <h1 class="site-title">Talent Trail</h1>
-        <p class="tagline">Discover careers that match your skills</p>
+    <!-- NAV -->
+    <div class="top-nav">
+        <div class="brand">Talent Trail</div>
+        <div class="nav-links">
+            <a href="{{ request.script_root }}/">Home</a>
+            <a href="{{ request.script_root }}/careers">Search</a>
+            <a href="{{ request.script_root }}/contact">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
 
-        <div class="card">
+    <!-- HERO -->
+    <h1 class="site-title">Talent Trail</h1>
+    <p class="tagline">Discover careers that match your skills</p>
+    <p class="hero-subtext">Explore career paths, compare your skills, and get personalized feedback.</p>
+
+    <div class="button-row">
+        <a href="{{ request.script_root }}/careers" class="primary-button">Start Career Search</a>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="card-grid">
+
+        <div class="card landing-card">
             <h2>About</h2>
             <p>
                 Talent Trail is a web-based career exploration tool that helps users
-                discover careers that match their skills.
-            </p>
-
-            <a href="about">Learn More Here</a>
-
-            <h2>How to Use</h2>
-            <p>
-                1. Choose a career<br>
-                2. Take the quiz<br>
-                3. View results<br>
-                4. Improve your skills
+                discover careers that match their current skills. The application
+                compares a user’s abilities with industry requirements and generates
+                a compatibility report.
             </p>
         </div>
 
-        <div style="text-align:center; margin-top: 30px;">
-            <a href="careers" class="primary-button">Start Career Search</a>
+        <div class="card landing-card">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Search for a career you are interested in.</li>
+                <li>Take the skills quiz for that career.</li>
+                <li>View your compatibility score and skill gaps.</li>
+                <li>Review recommended skills to improve.</li>
+            </ol>
         </div>
 
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <a href="{{ request.script_root }}/about">About</a>
+        <a href="{{ request.script_root }}/contact">Contact</a>
+        <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+    </div>
+
+</div>
 </body>
 </html>

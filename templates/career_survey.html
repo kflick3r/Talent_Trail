@@ -1,32 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Career Survey</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-        <h1>Top 10 Skills</h1>
-        <h2>Self-Survey for {{ career_name }}</h2>
-        <form method="post" action="survey/results">
-            <input type="hidden" name="career_code" value="{{ onetsoc_code }}">
-            <ul>
-                {% for skill, value, description in skills %}
-                    {% set skill_idx = loop.index0 %}
-                <li>
-                    <span class="skill-name">{{ skill }}</span><div></div>
-                    <span class="skill-description">Description: {{ description }}</span>
-                    <div class="rating">
-                        {% for i in range(0, 8) %}
+<head>
+    <meta charset="UTF-8">
+    <title>Talent Trail Survey</title>
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
+</head>
+
+<body>
+<div class="page-container">
+
+    <div class="top-nav">
+        <div class="brand">Talent Trail</div>
+        <div class="nav-links">
+            <a href="{{ request.script_root }}/">Home</a>
+            <a href="{{ request.script_root }}/careers">Search</a>
+            <a href="{{ request.script_root }}/contact">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+        </div>
+    </div>
+
+    <h1 class="site-title">Skills Quiz</h1>
+
+    <div class="career-badge">
+        {{ career_name }}
+    </div>
+
+    <form action="{{ request.script_root }}/careers/survey/results" method="post">
+        <input type="hidden" name="career_code" value="{{ onetsoc_code }}">
+
+        <div class="card survey-card">
+
+            <p class="survey-instructions">
+                Rate your experience with the following skills using a scale from 0–7.<br>
+                0 = No experience<br>
+                7 = Expert level
+            </p>
+
+            <div class="rating-header">
+                <span></span>
+                <span>0</span><span>1</span><span>2</span><span>3</span>
+                <span>4</span><span>5</span><span>6</span><span>7</span>
+            </div>
+
+            {% for skill_name, value, description in skills %}
+                {% set skill_idx = loop.index0 %}
+                <div class="rating-row">
+                    <div class="skill-name">{{ skill_name }}</div>
+
+                    <div class="rating-options">
+                        {% for i in range(8) %}
                             <label>
-                                <input type="radio" name="rating_{{ skill_idx }}" value="{{ i }}" required> {{ i }}
+                                <input type="radio" name="rating_{{ skill_idx }}" value="{{ i }}">
+                                <span class="radio-circle"></span>
                             </label>
                         {% endfor %}
                     </div>
-                </li>
-                {% endfor %}
-            </ul>
+                </div>
+            {% endfor %}
 
-            <button type="submit">Submit Survey</button>
-        </form>
-    </body>
+        </div>
+
+        <div class="button-row">
+            <button type="submit" class="primary-button">View Results</button>
+        </div>
+    </form>
+
+    <div class="footer">
+        <a href="{{ request.script_root }}/about">About</a>
+        <a href="{{ request.script_root }}/contact">Contact</a>
+        <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+    </div>
+
+</div>
+</body>
 </html>

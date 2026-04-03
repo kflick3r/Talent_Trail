@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Talent Trail</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
+</head>
+
 <body>
-    <div class="page-container">
-        <div class="top-nav">
-            <div><strong>Talent Trail</strong></div>
-	    <div class="brand">Talent Trail</div>
-                <a href="../">Home</a>
-                <a href="./">Search</a>
-                <a href="../about">Contact</a>
-                <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
-            </div>
+<div class="page-container">
+
+    <!-- NAV -->
+    <div class="top-nav">
+        <div class="brand">Talent Trail</div>
+        <div class="nav-links">
+            <a href="{{ request.script_root }}/">Home</a>
+            <a href="{{ request.script_root }}/careers">Search</a>
+            <a href="{{ request.script_root }}/contact">Contact</a>
+            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
         </div>
+    </div>
 
-        <h1 class="site-title">Select a Career</h1>
-        <p class="tagline">Select a career to view your skills</p>
+    <!-- TITLE -->
+    <h1 class="site-title">Select a Career</h1>
+    <p class="tagline">Select a career to view your skills</p>
 
-        <div class="career-card">
-		<form action="{{ request.script_root }}/careers/survey" method="post" class="career-form">
-		<label for="career" class="career-label">Select Career</label>
+    <!-- FORM -->
+    <div class="career-card">
+        <form action="{{ request.script_root }}/careers/survey" method="post" class="career-form">
 
+            <label for="career" class="career-label">Select Career</label>
+
+            <div class="dropdown-shell">
                 <select name="career" id="career" required class="career-dropdown">
                     <option value="" disabled selected>Select a Career...</option>
                     {% for code, title in careers %}
                         <option value="{{ code }}">{{ title }}</option>
                     {% endfor %}
                 </select>
+            </div>
 
-                <div class="button-row">
-                    <button type="submit" class="primary-button">Take Quiz</button>
-                </div>
-            </form>
-        </div>
+            <div class="button-row">
+                <button type="submit" class="primary-button">Take Quiz</button>
+            </div>
 
-        <div class="footer">
-            <a href="../about">About</a>
-            <a href="../about">Contact</a>
-            <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
-        </div>
+        </form>
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <a href="{{ request.script_root }}/about">About</a>
+        <a href="{{ request.script_root }}/contact">Contact</a>
+        <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+    </div>
+
+</div>
 </body>
 </html>

@@ -3,63 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Talent Trail Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ request.script_root }}/static/style.css">
 </head>
+
 <body>
-    <div class="page-container">
-        <h1 class="site-title">Talent Trail</h1>
-        <p class="tagline">Career Compatibility Results</p>
+<div class="page-container">
 
-        <div class="card">
-            <div class="results-section">
-                <h2>Career</h2>
-                <p>{{ career_name }}</p>
-            </div>
-
-            <div class="results-section">
-                <h2>Compatibility Score</h2>
-                <p class="results-score">{{ compatibility_score }}%</p>
-            </div>
-
-            <div class="results-split">
-                <div class="results-column">
-                    <h2>Matched Skills</h2>
-                    <ul>
-                        {% for skill in matched_skills %}
-                            <li>{{ skill }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                <div class="results-column">
-                    <h2>Skills to Improve</h2>
-                    <ul>
-                        {% for skill in skills_to_improve %}
-                            <li>{{ skill }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-
-            <div class="results-section">
-                <h2>Feedback</h2>
-                <p>{{ feedback_message }}</p>
-            </div>
-        </div>
-
-        <div class="button-row">
-            <a href="{{ url_for('results_pdf') }}">
-                Download Career Results PDF
-            </a>
-            <a href="../../careers">Return to Career Search</a>
-            <a href="../../../">Homepage</a>
-        </div>
-
-        <div class="footer">
-            <a href="../../../about">About</a>
-            <a href="../../../about">Contact</a>
+    <div class="top-nav">
+        <div class="brand">Talent Trail</div>
+        <div class="nav-links">
+            <a href="{{ request.script_root }}/">Home</a>
+            <a href="{{ request.script_root }}/careers">Search</a>
+            <a href="{{ request.script_root }}/contact">Contact</a>
             <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
         </div>
     </div>
+
+    <h1 class="site-title">Career Compatibility Results</h1>
+
+    <div class="card survey-card">
+
+        <div class="results-section">
+            <h2>Career</h2>
+            <p>{{ career_name }}</p>
+        </div>
+
+        <div class="results-section">
+            <h2>Compatibility Score</h2>
+            <p class="results-score">{{ compatibility_score }}%</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="results-split">
+            <div class="results-column">
+                <h2>Matched Skills</h2>
+                <ul>
+                    {% for skill in matched_skills %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="results-column">
+                <h2>Skills to Improve</h2>
+                <ul>
+                    {% for skill in skills_to_improve %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h2>Feedback</h2>
+            <p>{{ feedback_message }}</p>
+        </div>
+
+    </div>
+
+    <div class="button-row">
+        <a href="{{ request.script_root }}/careers" class="primary-button">Return to Career Selection</a>
+        <a href="{{ request.script_root }}/" class="primary-button">Homepage</a>
+    </div>
+
+    <div class="footer">
+        <a href="{{ request.script_root }}/about">About</a>
+        <a href="{{ request.script_root }}/contact">Contact</a>
+        <a href="https://github.com/kflick3r/Talent_Trail">GitHub</a>
+    </div>
+
+</div>
 </body>
 </html>
