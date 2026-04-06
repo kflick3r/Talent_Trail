@@ -9,6 +9,7 @@
 <body>
 <div class="page-container">
 
+    <!-- NAV -->
     <div class="top-nav">
         <div class="brand">Talent Trail</div>
         <div class="nav-links">
@@ -19,23 +20,31 @@
         </div>
     </div>
 
+    <!-- PAGE TITLE -->
     <h1 class="site-title">Career Compatibility Results</h1>
 
+    <!-- RESULTS CARD -->
     <div class="card survey-card">
 
+        <!-- CAREER -->
         <div class="results-section">
             <h2>Career</h2>
             <p>{{ career_name }}</p>
         </div>
 
+        <!-- SCORE -->
         <div class="results-section">
             <h2>Compatibility Score</h2>
             <p class="results-score">{{ compatibility_score }}%</p>
         </div>
 
+        <!-- DIVIDER -->
         <div class="section-divider"></div>
 
+        <!-- TWO COLUMNS -->
         <div class="results-split">
+
+            <!-- MATCHED SKILLS -->
             <div class="results-column">
                 <h2>Matched Skills</h2>
                 <ul>
@@ -45,6 +54,7 @@
                 </ul>
             </div>
 
+            <!-- SKILLS TO IMPROVE -->
             <div class="results-column">
                 <h2>Skills to Improve</h2>
                 <ul>
@@ -53,8 +63,10 @@
                     {% endfor %}
                 </ul>
             </div>
+
         </div>
 
+        <!-- FEEDBACK -->
         <div class="results-section">
             <h2>Feedback</h2>
             <p>{{ feedback_message }}</p>
@@ -62,11 +74,22 @@
 
     </div>
 
+    <!-- BUTTONS -->
     <div class="button-row">
-        <a href="{{ request.script_root }}/careers" class="primary-button">Return to Career Selection</a>
-        <a href="{{ request.script_root }}/" class="primary-button">Homepage</a>
+        <a href="{{ request.script_root }}/careers" class="primary-button">
+            Return to Career Selection
+        </a>
+
+        <a href="{{ request.script_root }}/" class="primary-button">
+            Homepage
+        </a>
+
+        <a href="{{ request.script_root }}/careers/survey/results/pdf" class="primary-button">
+            Download PDF
+        </a>
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
         <a href="{{ request.script_root }}/about">About</a>
         <a href="{{ request.script_root }}/contact">Contact</a>
