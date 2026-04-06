@@ -9,7 +9,7 @@ Purpose:
             - Skill Gap
             - Results
         - Edge Cases
-        - Uses mock data to avoid DB dependencey
+    Uses mock data to avoid DB dependencey
 
 Usage: 
     python -m unittest test_app.py
@@ -20,13 +20,21 @@ import unittest
 # Import Patch for mock data
 from unittest.mock import patch, MagicMock
 
-from app import app, rank_skill_gaps, calculate_results, get_skills, get_careers, get_career_name
+from app import (
+    app, 
+    rank_skill_gaps, 
+    calculate_results, 
+    get_skills, 
+    get_careers, 
+    get_career_name,
+)
 
 # -------------------
 # Test Flask Routes
 # -------------------
 
 class TalentTrailRouteTests(unittest.TestCase):
+# Tests Flask Routes and HTML Responses
     
     def setUp(self):
         app.config["TESTING"] = True
@@ -77,7 +85,6 @@ class TalentTrailRouteTests(unittest.TestCase):
         # Survey page GET without career parameter should return 400
         
         response = self.client.get('/careers/survey')
-        
         self.assertEqual(response.status_code, 400)
         self.assertIn(b'Error: No career selected', response.data)
 
@@ -167,13 +174,14 @@ class TalentTrailRouteTests(unittest.TestCase):
 # -------------------
 
 class TalentTrailLogicTests(unittest.TestCase):
-
+# Tests for skill ranking and results calculation
+    
     # ----------------
     # Skill Gap Tests
     # ----------------
 
     def test_rank_skill_gaps_basic(self):
-        # Skill gap should calculate positice gap and weighted gap
+        # Skill gap should calculate positive gap and weighted gap
         
         skill_data = [
             {"skill_name": "Python", "onet_level": 5, "onet_importance": 5}
@@ -187,7 +195,7 @@ class TalentTrailLogicTests(unittest.TestCase):
         self.assertGreater(result[0]["weighted_gap"], 0)
 
     def test_rank_skill_gaps_no_negative(self):
-        # Gap should never be negative
+        # Gap should not be negative
         
         skill_data = [
             {"skill_name": "Python", "onet_level": 5, "onet_importance": 5}
@@ -208,7 +216,6 @@ class TalentTrailLogicTests(unittest.TestCase):
         ]
 
         results = rank_skill_gaps(skill_data, {})
-
         self.assertEqual(results[0]["user_level"], 0)
 
 
@@ -282,7 +289,8 @@ class TalentTrailLogicTests(unittest.TestCase):
 # ----------------------
 
 class TalentTrailDatabaseAccessTests(unittest.TestCase):
-
+#Tests for database access functions
+    
     # ------------------
     # get_careers Tests
     # ------------------
@@ -401,6 +409,7 @@ class TalentTrailE2ETests(unittest.TestCase):
         self.assertIn(b"Engineer", response.data)
         self.assertIn(b"Python", response.data)
         self.assertIn(b"SQL", response.data)
+
 
 # -------------------
 # Run Tests

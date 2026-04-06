@@ -202,7 +202,7 @@ body {
 .career-badge {
     background-color: #B3C3D1;
     border: 1px solid #7391AB;
-    border-radius: 16px;
+    border-radius: 4px;
     padding: 12px 24px;
     width: fit-content;
     margin: 0 auto 20px auto;
