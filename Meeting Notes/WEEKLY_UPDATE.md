@@ -386,3 +386,125 @@ Current blockers and issues include:
 - **Kassidy:** Finish unit testing and continue About page work.
 - **Lisa:** Continue work on the results page and PDF-related tasks.
 - **Sarah:** Finish applying CSS across remaining pages, clean up the HTML structure, and begin organizing templates with possible template inheritance.
+```
+
+---
+
+## Reporting Period
+**Week:** 11  
+**Meeting Held:** Yes  
+**Meeting Date:** 4/6/2026  
+**Meeting Duration:** 45 minutes  
+**Meeting Format:** Zoom  
+
+---
+
+## Overview
+This document captures the **weekly status** of the Talent Trail project for the specified reporting period.  
+It is intended to provide a concise snapshot of progress, plans, and risks, and will be updated weekly throughout the project.
+
+This weekly status format is designed to:
+- Track ongoing progress over time
+- Surface risks and blockers early
+- Provide accountability for individual contributions
+- Supplement the project management tool used by the team
+
+---
+
+## Project Management Snapshot
+The team is using a shared **Jira board** to manage tasks and sprint progress.
+
+At the time of this report:
+
+- Tasks continue to be aligned to user stories  
+- Work is distributed across frontend, backend, database, and algorithm development  
+- The team added a **Wednesday Discord check-in** to improve coordination and maintain momentum between meetings  
+- Team members are beginning to align implementation work across connected pages and features  
+
+---
+
+## Progress Since Last Week
+
+This week, the team moved from early implementation work across the MVP to a viable product.
+
+Major Progress Items:
+
+- Unit tests were written and passed
+- Design and style has near completion
+- Results PDF generation successfully linked
+
+---
+
+## Completed Tasks
+
+- Tests for Backend routes and database queries written
+- Write tests for database and flask routes
+- Implement backend PDF generation route
+- Implement Consistent Styling Across all Pages
+- Dynamically display matched skills and percentage match
+
+---
+
+## Planned Tasks for Next Week
+
+- Update powerpoint with screenshots and detailed information about the project
+- Verify that the information displayed on PDF is desired result
+- Connect styling to PDF result HTML page
+- Identify if skills can be displayed according to importance instead of first tem
+- Implement code to open the PDF in a new page
+- Verify end-to-end test continues to work after final changes are implemented
+
+---
+
+## Blockers and Issues
+
+Current blockers and issues include:
+
+- One team member is experiencing issues loading the PDF module
+- Identifying the module for PDF creation locally and on JH was thorough
+- Identify how to have data persist through the session and be output to the PDF
+- Some team members noted time constraints this week
+- Weasyprint PDF module may be causing issue for a team member
+
+---
+
+## Risks and Mitigation
+
+**Identified Risk:** Virtual environment modules installation concern 
+- *Mitigation:* Sarah will review the issue and reach out if persists to seek team support.
+
+**Identified Risk:** Reduced availability this week due to outside commitments  
+- *Mitigation:* Continued mid-week discord check-in has proved helpful to keep team on timeline
+
+**Identified Risk:** Scope of final project presentation materials
+- *Mitigation:* Plan for strong communication between team members to ensure that the workload is distributed.
+
+---
+
+## Team Reflection
+
+This week showed meaningful progress toward a working MVP, especially in moving from planning into actual implementation. The team now has early webpage functionality, a connected database, and a documented algorithm direction. At the same time, the project still needs stronger alignment between page structure, user flow, design implementation, and backend logic. The added Wednesday Discord check-in should help the team stay coordinated during the week and reduce ambiguity as development continues.
+
+---
+
+## Individual Contributions This Week
+
+- **Kassidy:** Created and verified 24 units tests that encompass all aspects of the routes, database and page loading
+- **Mark:** Wrote algorithm information for the about page and the unit tests for the algorithm
+- **Lisa:** Created the pdf generation flask route and coneccted data throughout a session 
+- **Sarah:** Impletemented the CSS across the HTML pages for a fully visualized webpage.
+
+---
+
+## Team Focus / Role Alignment
+
+Current division of work is shaping up as follows:
+
+- **Kassidy:** Backbone development and dropdown / skills-page structure  
+- **Lisa:** Connecting results and user choices across pages  
+- **Mark:** Developing the algorithm based on user variables and skills choices  
+- **Sarah:** Developing HTML / landing page styling and broader visual design  
+
+---
+
+
