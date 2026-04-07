@@ -9,10 +9,10 @@ Purpose:
             - Skill Gap
             - Results
         - Edge Cases
-    Uses mock data to avoid DB dependencey
+    Uses mock data to avoid DB dependency
 
 Usage: 
-    python -m unittest test_app.py
+    python -m unittest discover -s tests -p "test_*.py"
 """
 
 import unittest
