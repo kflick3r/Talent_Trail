@@ -26,12 +26,12 @@
             {% endfor %}
         </ul>
 
-        <h3>Detailed Results: </h3>
+        <h3>Where your skills vary from baseline: </h3>
         <ul>
             {% for r in ranked_results %}
             <li>
-                {{ r.skill_name }} -
-                Where your skills vary from baseline: {{ r.weighted_gap }} versus {{ r.data_value }}
+                <b>{{ r.skill_name }}</b> -
+                Your self-assessed score: {{ r.user_level }} versus expected proficiency: {{ r.onet_level }}
             </li>
             {% endfor %}
         </ul>

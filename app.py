@@ -256,7 +256,6 @@ def rank_skill_gaps(skill_data, user_ratings):
         skill_name = skill["skill_name"]
         onet_level = skill["onet_level"]
         onet_importance = skill["onet_importance"]
-        data_value = skill["data_value"]
         user_level = user_ratings.get(skill_name, 0)
 
         # Raw skill gap
