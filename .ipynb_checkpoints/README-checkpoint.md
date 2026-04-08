@@ -105,9 +105,12 @@ The exact URL may vary depending on your JupyterHub setup
 ---
 
 ## Future Development Possibilities
-- Incorporate previous experience and education into compatibility scoring
-- Visualization of typical education distribution for selected careers
-- Add more advanced visualizations and interactive graphs
-- Enable user accounts and saved career reports
-- Support multi-career comparison for long-term planning
-- Improve performance for large datasets with optimized database queries
+| Feature                                      | Description                                                             | Benefit                                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Trie Tree Career Selection                   | Replace career selection dropdown with a Trie Tree algorithm            | Faster and more intuitive career search; improves user experience        |
+| Skill Categories                             | Organize skills into Technical, Soft Skills, Education, Experience      | Provides a more detailed and meaningful analysis of user skills          |
+| Career Progress Tracking                     | Track user progress across multiple sessions                            | Supports long-term skill development and repeated assessments            |
+| Multi-Career Comparison                      | Compare user skills across multiple careers                             | Helps users explore alternative career paths and make informed decisions |
+| Incorporate Experience & Education           | Include previous work experience and education in compatibility scoring | Produces a more holistic and accurate assessment of career readiness     |
+| Education Distribution Visualization         | Display typical education distribution for selected careers             | Helps users understand common career paths and educational requirements  |
+| User Accounts & Saved Reports                | Enable login and report saving for multiple sessions                    | Supports long-term tracking and personalized planning                    |

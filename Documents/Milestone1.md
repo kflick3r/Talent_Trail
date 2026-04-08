@@ -61,14 +61,12 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
     - Required skills list
 4. User completes survey (1–7 scale)
 5. Backend:
-    - Calculates match %
+    - Calculates match percentage
     - Identifies missing skills
 6. Results page displays:
-    - Career description
     - Match percentage
-    - Missing skills
-    - Selected skills users have
-    - Distribution Graph of typical education needed
+    - Skills the user possesses
+    - Skills that need improvement
     - Button to generate PDF
 7. PDF of report is generated and downloaded
 
@@ -120,15 +118,17 @@ https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&gr
 
 ---
 
-## Potential Add-on Features:
-| Feature | Description | Benefit |
-|---------|-------------|--------|
-| Trie Tree Career Selection | Replace Career Selection Dropdown with a Trie Tree Algorithm | Better User Experience |
-| 1–5 Skill Rating | Replace Yes/No survey with a 1–5 scale | Provides more nuanced insight into skill mastery |
-| Skill Categories | Organize skills into Technical, Soft Skills, Education, Experience | Enables a more detailed and meaningful analysis |
-| Career Progress Tracking | Track user progress over multiple sessions | Supports long-term skill development and repeated assessments |
-| Multi-Career Comparison | Compare user skills across multiple careers | Helps users explore alternative career paths |
-| Skill Weighting | Weight skills by importance for career | Improves match accuracy and career relevance |
+## Future Development Possibilities
+| Feature                                      | Description                                                             | Benefit                                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Trie Tree Career Selection                   | Replace career selection dropdown with a Trie Tree algorithm            | Faster and more intuitive career search; improves user experience        |
+| Skill Categories                             | Organize skills into Technical, Soft Skills, Education, Experience      | Provides a more detailed and meaningful analysis of user skills          |
+| Career Progress Tracking                     | Track user progress across multiple sessions                            | Supports long-term skill development and repeated assessments            |
+| Multi-Career Comparison                      | Compare user skills across multiple careers                             | Helps users explore alternative career paths and make informed decisions |
+| Incorporate Experience & Education           | Include previous work experience and education in compatibility scoring | Produces a more holistic and accurate assessment of career readiness     |
+| Education Distribution Visualization         | Display typical education distribution for selected careers             | Helps users understand common career paths and educational requirements  |
+| User Accounts & Saved Reports                | Enable login and report saving for multiple sessions                    | Supports long-term tracking and personalized planning                    |
+
 
 ---
 
