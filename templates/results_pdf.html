@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Career Results Download</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Talent Trail Career Report</title>
 
-    </head>
-    <body>
-        <h1>Career Compatibility Report</h1>
+    <style>
+        body {
+            font-family: "Inria Serif", serif;
+            background-color: #F8F8F8;
+            color: #000100;
+            margin: 0;
+            padding: 0;
+        }
 
-        <h2>{{ career_name }}</h2>
-        <p><strong>Compatibility Score: </strong> {{compatibility_score}}%</p>
+        .pdf-page {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 35px 40px 40px 40px; /* reduced */
+            box-sizing: border-box;
+        }
 
-        <h3>Skills to Improve: </h3>
-        <ul>
-            {% for skill in skills_to_improve %}
-            <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
+        .pdf-title {
+            text-align: center;
+            font-size: 42px; /* slightly smaller */
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-        <h3>Matched Skills: </h3>
-        <ul>
-            {% for skill in matched_skills %}
-            <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
+        .pdf-subtitle {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
 
         <h3>Where your skills vary from baseline: </h3>
         <ul>
@@ -36,4 +43,131 @@
             {% endfor %}
         </ul>
     </body>
+</html>
+        .summary-box {
+            background-color: #B3C3D1;
+            border-radius: 24px;
+            padding: 18px 26px; /* reduced */
+            width: 80%;
+            margin: 0 auto 30px auto; /* reduced */
+        }
+
+        .summary-table {
+            width: 100%;
+        }
+
+        .summary-table td {
+            font-size: 20px; /* reduced */
+            padding: 6px 0;
+        }
+
+        .summary-label {
+            font-weight: 700;
+            width: 50%;
+        }
+
+        .divider {
+            width: 75%;
+            margin: 20px auto 25px auto; /* reduced */
+            border-top: 1px solid #000100;
+        }
+
+        .columns-table {
+            width: 100%;
+            margin-bottom: 30px; /* reduced */
+        }
+
+        .columns-table td {
+            width: 50%;
+            vertical-align: top;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 22px;
+            font-size: 18px; /* reduced */
+            line-height: 1.4;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .feedback-section {
+            margin-top: 10px;
+        }
+
+        .feedback-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feedback-text {
+            font-size: 18px;
+            line-height: 1.4;
+            max-width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pdf-page">
+
+        <div class="pdf-title">Talent Trail Career Report</div>
+        <div class="pdf-subtitle">Career Compatibility Results</div>
+
+        <div class="summary-box">
+            <table class="summary-table">
+                <tr>
+                    <td class="summary-label">Career</td>
+                    <td>{{ career_name }}</td>
+                </tr>
+                <tr>
+                    <td class="summary-label">Compatibility Score</td>
+                    <td>{{ compatibility_score }}%</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="divider"></div>
+
+        <table class="columns-table">
+            <tr>
+                <td>
+                    <div class="section-title">Matched Skills</div>
+                    <ul>
+                        {% for skill in matched_skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+
+                <td>
+                    <div class="section-title">Skills to Improve</div>
+                    <ul>
+                        {% for skill in skills_to_improve %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <div class="feedback-section">
+            <div class="feedback-title">Feedback</div>
+            <div class="feedback-text">
+                {{ feedback_message }}
+            </div>
+        </div>
+
+    </div>
+</body>
 </html>

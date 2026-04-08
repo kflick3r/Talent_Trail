@@ -311,6 +311,67 @@ body {
     padding-left: 24px;
 }
 
+/* ---------- PDF Results ---------- */
+@media print {
+    body {
+        background-color: white;
+    }
+
+    .page-container {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .top-nav,
+    .button-row,
+    .footer {
+        display: none;
+    }
+
+    .site-title {
+        font-size: 42px;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background-color: #D9E3EC !important;
+        box-shadow: none;
+        border: 1px solid #7391AB;
+        page-break-inside: avoid;
+    }
+
+    .survey-card {
+        padding: 30px 36px;
+        max-width: 100%;
+    }
+
+    .results-section h2,
+    .results-column h2 {
+        font-size: 28px;
+    }
+
+    .results-section p,
+    .results-column li {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .results-score {
+        font-size: 34px;
+    }
+
+    .results-split {
+        gap: 30px;
+        margin: 24px 0;
+    }
+
+    .section-divider {
+        border-top: 1px solid #000100;
+        margin: 18px 0;
+    }
+}
+
 /* ---------- Contact -------- */
 
 .contact-banner {
