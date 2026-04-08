@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Talent Trail Career Report</title>
-
     <style>
         body {
             font-family: "Inria Serif", serif;
@@ -16,15 +15,16 @@
         .pdf-page {
             max-width: 850px;
             margin: 0 auto;
-            padding: 35px 40px 40px 40px; /* reduced */
+            padding: 35px 40px 40px 40px;
             box-sizing: border-box;
         }
 
         .pdf-title {
             text-align: center;
-            font-size: 42px; /* slightly smaller */
+            font-size: 42px;
             font-weight: 700;
             margin-bottom: 8px;
+            line-height: 1.1;
         }
 
         .pdf-subtitle {
@@ -33,32 +33,23 @@
             margin-bottom: 20px;
         }
 
-        <h3>Where your skills vary from baseline: </h3>
-        <ul>
-            {% for r in ranked_results %}
-            <li>
-                <b>{{ r.skill_name }}</b> -
-                Your self-assessed score: {{ r.user_level }} versus expected proficiency: {{ r.onet_level }}
-            </li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
         .summary-box {
             background-color: #B3C3D1;
             border-radius: 24px;
-            padding: 18px 26px; /* reduced */
+            padding: 18px 26px;
             width: 80%;
-            margin: 0 auto 30px auto; /* reduced */
+            margin: 0 auto 30px auto;
         }
 
         .summary-table {
             width: 100%;
+            border-collapse: collapse;
         }
 
         .summary-table td {
-            font-size: 20px; /* reduced */
+            font-size: 20px;
             padding: 6px 0;
+            vertical-align: top;
         }
 
         .summary-label {
@@ -68,13 +59,14 @@
 
         .divider {
             width: 75%;
-            margin: 20px auto 25px auto; /* reduced */
+            margin: 20px auto 25px auto;
             border-top: 1px solid #000100;
         }
 
         .columns-table {
             width: 100%;
-            margin-bottom: 30px; /* reduced */
+            border-collapse: collapse;
+            margin-bottom: 30px;
         }
 
         .columns-table td {
@@ -92,7 +84,7 @@
         ul {
             margin: 0;
             padding-left: 22px;
-            font-size: 18px; /* reduced */
+            font-size: 18px;
             line-height: 1.4;
         }
 
