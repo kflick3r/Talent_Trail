@@ -417,7 +417,8 @@ def results():
         compatibility_score=compatibility_score,
         matched_skills=matched_skills,
         skills_to_improve=skills_to_improve,
-        feedback_message=feedback_message
+        feedback_message=feedback_message,
+        ranked_results=ranked_results
     )
 
 @app.route("/careers/survey/results/pdf")

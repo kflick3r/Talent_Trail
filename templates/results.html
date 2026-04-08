@@ -54,17 +54,20 @@
                 </ul>
             </div>
 
+
             <!-- SKILLS TO IMPROVE -->
             <div class="results-column">
                 <h2>Skills to Improve</h2>
                 <ul>
-                    {% for skill in skills_to_improve %}
-                        <li>{{ skill }}</li>
+                    {% for skill in ranked_results %}
+                        {% if skill.gap > 0 %}
+                            <li>
+                                {{ skill.skill_name }} - Gap: {{ skill.gap }}
+                            </li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </div>
-
-        </div>
 
         <!-- FEEDBACK -->
         <div class="results-section">
