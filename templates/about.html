@@ -49,6 +49,28 @@
             they can improve.
         </p>
 
+        <h2> How the Algorithm Works </h2>
+        <p>
+            When the user picks a career, the app pulls the top skills for that job based 
+            on ONET importance, so the survey is only showing the skills that matter most for that role. 
+            
+            Then, after the user rates themselves on those skills, the app compares the user’s rating to 
+            the ONET level rating for each skill. It calculates the gap by subtracting the user’s level 
+            from the career’s target level, and if the user is already at or above that level, the gap is 
+            just treated as zero. <br><br>
+            
+            The algorithm weights the gap by the importance score, so skills that are both important as defined by
+            ONET data AND lacking from the user input get ranked higher. The final results show which important skills
+            the user already matches and which ones they still need to improve, with the improvement list ordered by 
+            the biggest weighted gaps first.
+        </p>
+
+        <h2> What is ONET? </h2>
+        <p> 
+            ONET, which stands for the Occupational Information Network, is the nation’s primary source of occupational
+            and career information. ONET data is job and workforce data pulled directly from the O*NET database/website, 
+            and it includes standardized information about occupations such as skills, knowledge, abilities, work activities, 
+            and ratings like Importance and Level for each skill associated with a job.
     </div>
 
     <!-- FOOTER -->
