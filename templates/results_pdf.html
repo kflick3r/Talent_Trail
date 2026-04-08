@@ -31,7 +31,7 @@
             {% for r in ranked_results %}
             <li>
                 {{ r.skill_name }} -
-                Gap: {{ r.gap }}, Importance: {{ r.onet_importance }}
+                Where your skills vary from baseline: {{ r.weighted_gap }} versus {{ r.data_value }}
             </li>
             {% endfor %}
         </ul>

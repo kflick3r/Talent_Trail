@@ -122,7 +122,7 @@ def get_skills(onetsoc_code):
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     
-    #Changed: Uses scale_id - 'IM' so survey shows 10 most important skills for occupation
+    #Changed: Uses scale_id - 'IM' so survey shows 15 most important skills for occupation
 
     query = """
         SELECT cmr.element_name, s.data_value, cmr.description
@@ -131,7 +131,7 @@ def get_skills(onetsoc_code):
         WHERE s.onetsoc_code = ?
         AND s.scale_id = 'IM'
         ORDER BY s.data_value DESC
-        LIMIT 10
+        LIMIT 15
     """
 
     c.execute(query, (onetsoc_code,))
@@ -256,6 +256,7 @@ def rank_skill_gaps(skill_data, user_ratings):
         skill_name = skill["skill_name"]
         onet_level = skill["onet_level"]
         onet_importance = skill["onet_importance"]
+        data_value = skill["data_value"]
         user_level = user_ratings.get(skill_name, 0)
 
         # Raw skill gap
@@ -433,7 +434,7 @@ def results_pdf():
 
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "inline; filename=results.pdf"
+    response.headers["Content-Disposition"] = "attachment; filename=results.pdf"
 
     return response
 
