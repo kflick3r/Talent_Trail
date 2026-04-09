@@ -17,7 +17,6 @@ Usage:
         - Database file located at: Data/onet.db
 '''
 
-#import pdfkit
 from flask import Flask, render_template, request, make_response, session, url_for
 import sqlite3
 import os
@@ -391,9 +390,9 @@ def results():
     if skills_to_improve:
         top_skills = skills_to_improve[:3]
         if len(top_skills) == 1:
-            feedback_message = f"Improving {top_skills[0]} will increase your compatibility with {career_name.lower()} roles."
+            feedback_message = f"Improving {top_skills[0]} will increase your compatibility with {career_name.lower()}."
         elif len(top_skills) == 2:
-            feedback_message = f"Improving {top_skills[0]} and {top_skills[1]} will increase your compatibility with {career_name.lower()} roles."
+            feedback_message = f"Improving {top_skills[0]} and {top_skills[1]} will increase your compatibility with {career_name.lower()}."
         else:
             feedback_message = f"Improving {top_skills[0]}, {top_skills[1]}, and {top_skills[2]} will increase your compatibility with {career_name.lower()} roles."
     else:

@@ -21,7 +21,7 @@
 
         .pdf-title {
             text-align: center;
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 700;
             margin-bottom: 8px;
             line-height: 1.1;
@@ -47,7 +47,7 @@
         }
 
         .summary-table td {
-            font-size: 20px;
+            font-size: 18px;
             padding: 6px 0;
             vertical-align: top;
         }
@@ -76,7 +76,7 @@
         }
 
         .section-title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 10px;
         }
@@ -84,7 +84,7 @@
         ul {
             margin: 0;
             padding-left: 22px;
-            font-size: 18px;
+            font-size: 14px;
             line-height: 1.4;
         }
 
@@ -97,13 +97,13 @@
         }
 
         .feedback-title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 8px;
         }
 
         .feedback-text {
-            font-size: 18px;
+            font-size: 14px;
             line-height: 1.4;
             max-width: 80%;
         }
@@ -154,12 +154,17 @@
         </table>
 
         <div class="feedback-section">
-            <div class="feedback-title">Feedback</div>
-            <div class="feedback-text">
-                {{ feedback_message }}
-            </div>
+            <div class="feedback-title">Where your skills vary from baseline: </div>
+            <ul>
+                {% for r in ranked_results %}
+                    <li>
+                        <b>{{ r.skill_name }}</b> —
+                        Your score: {{ r.user_level }},
+                        Expected: {{ r.onet_level }}
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-
     </div>
 </body>
 </html>
