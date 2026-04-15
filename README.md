@@ -43,6 +43,9 @@ Many people struggle to evaluate their skill sets and develop a clear plan to re
 - Button to generate PDF
 7. PDF of report is generated and downloaded
 
+## Demo Video: 
+https://youtu.be/zIh3MUsDnYw
+
 ---
 
 ## Tech Stack

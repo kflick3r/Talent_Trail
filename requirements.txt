@@ -1,0 +1,4 @@
+Flask==3.0.0
+pdfkit==1.0.0
+WeasyPrint==61.2
+gunicorn==21.2.0
