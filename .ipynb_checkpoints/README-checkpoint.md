@@ -26,7 +26,7 @@ Many people struggle to evaluate their skill sets and develop a clear plan to re
 
 ---
 
-### User Flow
+## User Flow
 1. User lands on homepage
 2. User selects career from searchable dropdown
 3. Backend retrieves:
@@ -43,8 +43,19 @@ Many people struggle to evaluate their skill sets and develop a clear plan to re
 - Button to generate PDF
 7. PDF of report is generated and downloaded
 
+---
+
 ## Demo Video: 
 https://youtu.be/zIh3MUsDnYw
+
+---
+
+## Live Demo  
+The project is deployed using Render:  
+
+https://talent-trail.onrender.com  
+
+You can access the full working version of Talent Trail without running it locally.  
 
 ---
 
