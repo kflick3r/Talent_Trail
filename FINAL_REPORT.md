@@ -5,9 +5,9 @@
 ### Team Information
 - **Team Number:** 1
 - **Team Name:** Algorithm Alliance
-- 
+
 ### Project Title
-## ** Talent Trail - A web-app used to evaluate career readiness for a chosen career
+## Talent Trail - A web-app used to evaluate career readiness for a chosen career
 
 #### Team Members
 - **Lisa Wilder** (GitHub: `Wilder407`, Email: Lisa.Wilder@colorado.edu)
@@ -22,6 +22,8 @@
 - **Version Control Repository**: *Github* (public) https://github.com/kflick3r/Talent_Trail
 - **Demo Video**: https://drive.google.com/file/d/1WE2Smd3j-kiLPdorW5b4QrEOJeYeEoC-/view?usp=sharing
 - **Public Deployment Site**: *Render* https://talent-trail.onrender.com/
+
+---
 
 ## Repository Readiness
 All team members have verified that their latest work is pushed to the remote repository.
@@ -39,6 +41,8 @@ The reposity contains the following required files and assests:
 - Test cases (unit and integration)
 - Source documentation and auto-generated documentation files
 
+---
+
 ## Final Status Report
 
 ### What Team 1 completed:
@@ -50,7 +54,7 @@ The reposity contains the following required files and assests:
 - PDF Report Generation
 
 ### What Team 1 was in the middle of completing:
-- Retrieving the career description for display on survey page. 
+- Retrieving the career description for display on survey and results page. 
 
 ### What we planned for the future:
 - User login to store survey results
@@ -60,13 +64,12 @@ The reposity contains the following required files and assests:
 - Display typical education distribution for selected careers
 
 ### Known problems and limitations:
-- The career list is only searchable by the first character of the career name.
+- The career list not searchable. 
 - The survey is rudimentary making skill gap/compatibility score only relative to the skills presented.
-- 
 
 ## System Overview
 
-Talent Trail uses a standar three-tier architecture:
+Talent Trail uses a standard three-tier architecture:
 - Frontend: HTML/CSS
 - Backend: Flask
 - Database: SQLite3
@@ -76,44 +79,29 @@ The system was designed based on the prior skills and knowledge of the team as w
 ## Pages that access database information
 - Careers: present survey user with list of available careers
 - Survey: Present user with 15 most important skills for the chosen career through a session
+- Results: Career Title, skill list
 
-## Page Data Access tests
-
-### Use case name
-
-### Description
-
-### Pre-conditions
-
-### Test steps
-
-### Expected result
-
-### Actual result
-
-### Status
-
-### Notes
-
-### Post-conditions
+---
 
 ## Reflection
+This project has been instrumental in leaning to see an idea through to a viable product. As a team, we got first hand experience with agile, version control, frontend, backend, HTML, deployment, testing, and presenting a working product. 
 
-**Key Takeaways:**
-- 
+#### **Key Takeaways:**
+- Scope control is crucial. Defining the MVP and following it strictly is very important.
+- New features can always be added in later.
+- Communication is manditory and very important to the project.
+- Task ownership and proactivity pays off in the end.
 
-
-
-
+---
 
 ## Vision Statement:
 Talent Trail is a web-based career exploration tool that helps users evaluate how closely their current skills, education, and experience align with the selected desired career and professional goals. Using occupational data from the O*NET database, Talent Trail generates a personalized gap analysis report to show users their match percentage and what is still needed to achieve potential careers. 
     
 ---
-## Motivation: 
-People often struggle to evaluate their skill sets and understand whether they are qualified for their desired career. Figuring out what is needed to reach a dream career can be overwhelming and time-intensive, with conflicting information across the internet. Talent Trail aligns the O*NET database with a user’s information to provide clear, data-driven comparisons. This transforms career planning into a tangible and digestible evaluation.  
 
-  
+## Motivation: 
+People often struggle to evaluate their skill sets and understand whether they are qualified for their desired career. Figuring out what is needed to reach a dream career can be overwhelming and time-intensive, with conflicting information across the internet. Talent Trail aligns the O*NET database with a user’s information to provide clear, data-driven comparisons. This transforms career planning into a tangible and digestible evaluation. 
+
 ---
 
 ## Project Risks:
@@ -122,7 +110,6 @@ People often struggle to evaluate their skill sets and understand whether they a
 - **Feature Scope:** Identifying the scope and MVP and sticking with it, rather than letting imagination expand the project scope. 
 - **Full-Stack Integration:** Deciding on technologies and languages to use and learn.
 - **Expectations:** Individual expectations regarding time and energy spent on the success of the application. 
-
   
 ---    
 
@@ -136,7 +123,6 @@ People often struggle to evaluate their skill sets and understand whether they a
 - Communicate weekly via Discord Team Messenger for general conversations, check-ins, and casual questions
 - Email major progress and concerns to the team, with Professor Guinn cc'd
 
-  
 ---
 
 ## MVP Structure/Functional Requirements:
@@ -194,17 +180,7 @@ MVP Goal: Deliver a fully functional career gap analysis tool that allows users 
    - PDF Download Option
 6. Integrate frontend and backend components
 7. Conduct testing and prepare final presentation and documentation.
-
   
----
-    
-## Project Tracking Software Link:
-Weekly Agile/SCRUM meetings. Jira is organized by Milestone and Userstories.
-
-
-**Jira** (Trello):
-https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&groupBy=status&atlOrigin=eyJpIjoiZTUxNjQ0MDc4ZTE3NDExY2IxYTI4ZmFiZDhiOGQ1MzIiLCJwIjoiaiJ9
-
 ---
 
 ## Future Development Possibilities
@@ -223,10 +199,9 @@ https://algorithm-alliance.atlassian.net/jira/core/projects/T1C/board?filter=&gr
 
 ## Potential Risks & Edge Cases
 
-| Risk / Edge Case | Description | Mitigation Strategy |
+| Risk / Edge Case | Description | Possible Mitigation Strategy |
 |-----------------|-------------|------------------|
 | Survey Overload | Some careers have many skills; survey may be overwhelming | Potentially limit 10–20 key skills per career? |
 | O*NET Data Gaps | Missing or outdated data for certain careers | Use a subset of careers for MVP? |
 | PDF Generation Errors | Large reports may fail or break layout | Test PDF generation thoroughly; provide fallback to simple HTML export? |
 | Misinterpretation of Match % | Users may assume match % guarantees career success | Include disclaimer: “Based on self-assessment and O*NET data” |
-| Trie Search Edge Cases | Typing errors may prevent career selection | Implement fuzzy matching and autocomplete suggestions |
